@@ -430,15 +430,40 @@ body.mobile #app-frame .cart.cart--proto .cart__item-price {
 }
 body.mobile #app-frame .cart.cart--proto .cart__item-number {
   position: absolute !important;
-  left: 2rem !important;
-  right: 2rem !important;
+  left: 50% !important;
+  right: auto !important;
   bottom: 2rem !important;
-  width: auto;
+  width: 14rem;
   margin: 0;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+}
+body.mobile #app-frame .cart.cart--proto .cart__item-number .ui-number {
+  width: 14rem;
+  max-width: 100%;
 }
 body.mobile #app-frame .cart.cart--proto .cart__item-action {
   top: 0;
   right: 0;
+}
+
+/* CTA в итоге — по центру, аккуратная ширина */
+body.mobile #cart-summary .btn-row,
+body.mobile .cart-mobile-summary .btn-row,
+body.mobile .checkout-footer .btn-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+body.mobile #cart-summary .btn,
+body.mobile .cart-mobile-summary .btn,
+body.mobile .checkout-footer .btn {
+  width: 100%;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* —— Forms —— */
