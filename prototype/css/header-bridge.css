@@ -361,6 +361,27 @@ body.mobile #app-frame .page {
   -webkit-overflow-scrolling: touch;
 }
 
+/* Настоящий телефон (экран ≤ 600px): без рамки, на всю ширину, меню прибито к низу экрана */
+body.real-phone #site-shell.frame-mobile {
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  height: auto;
+  max-height: none;
+  display: block;
+  overflow: visible;
+  padding-bottom: 72px;
+}
+body.real-phone #site-shell.frame-mobile #app-frame { overflow: visible; }
+body.real-phone .sticky-header-block {
+  position: fixed !important;
+  left: 0; right: 0; bottom: 0;
+}
+body.real-phone .proto-bar { justify-content: center; }
+body.real-phone .proto-bar > span { display: none; }
+
 /* Экраны прототипа не ломаются стилями сайта */
 #app-frame .page,
 #app-frame .card,

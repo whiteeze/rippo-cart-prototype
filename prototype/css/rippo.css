@@ -38,6 +38,10 @@ img { max-width: 100%; display: block; }
   display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
   padding: 8px 12px; font-size: 12px;
 }
+.proto-bar { justify-content: center; }
+.proto-bar select { width: auto; flex: 0 0 auto; }
+.proto-bar .proto-note { margin-left: 0; flex: 1 1 100%; text-align: center; }
+.proto-bar > span { text-align: center; }
 .proto-bar strong { color: var(--yellow); margin-right: 8px; }
 .proto-bar select, .proto-bar button {
   background: #222; color: #fff; border: 1px solid #444;

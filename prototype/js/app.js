@@ -202,12 +202,22 @@
     window.open('https://rippo.ru/katalog-prostavok/', '_blank', 'noopener');
   });
 
-  $('#viewport')?.addEventListener('change', (e) => {
+  const realPhone = window.matchMedia('(max-width: 600px)');
+  function applyViewport(mobile) {
     const shell = $('#site-shell') || $('#app-frame');
-    const mobile = e.target.value === 'mobile';
     shell.classList.toggle('frame-mobile', mobile);
     shell.classList.toggle('frame-desktop', !mobile);
     document.body.classList.toggle('mobile', mobile);
+    document.body.classList.toggle('real-phone', mobile && realPhone.matches);
+    const sel = $('#viewport');
+    if (sel) sel.value = mobile ? 'mobile' : 'desktop';
+  }
+  // На настоящем телефоне сразу включаем мобильную версию (без рамки)
+  if (realPhone.matches) applyViewport(true);
+
+  $('#viewport')?.addEventListener('change', (e) => {
+    const mobile = e.target.value === 'mobile';
+    applyViewport(mobile);
     $('#mobile-menu-links')?.classList.remove('open');
   });
 
