@@ -208,7 +208,7 @@
     // В прототипе имитируем возврат в каталог
     window.open('https://rippo.ru/katalog-prostavok/', '_blank', 'noopener');
   }
-  ['#continue-shopping', '#continue-shopping-m', '#continue-shopping-mm', '#continue-shopping-drawer'].forEach((sel) => {
+  ['#continue-shopping', '#continue-shopping-m', '#continue-shopping-mm', '#continue-shopping-drawer', '#continue-shopping-chk'].forEach((sel) => {
     document.querySelector(sel)?.addEventListener('click', continueShopping);
   });
 
@@ -243,6 +243,8 @@
     el.addEventListener('click', () => {
       $$('[data-delivery]').forEach((c) => c.classList.remove('selected'));
       el.classList.add('selected');
+      const input = el.querySelector('input[type="radio"]');
+      if (input) input.checked = true;
       state.delivery = el.dataset.delivery;
       state.pvzNoCod = false;
       updateDeliveryUI();
@@ -279,10 +281,12 @@
   });
 
   function updateConfirm() {
-    const fio = document.querySelector('input[name="fio"]')?.value || '';
+    const first = document.querySelector('input[name="firstName"]')?.value || '';
+    const last = document.querySelector('input[name="lastName"]')?.value || '';
     const phone = document.querySelector('input[name="phone"]')?.value || '';
+    const name = `${first} ${last}`.trim();
     if ($('#confirm-contacts')) {
-      $('#confirm-contacts').textContent = fio || phone ? `${fio} ${phone}`.trim() : '—';
+      $('#confirm-contacts').textContent = name || phone ? `${name} ${phone}`.trim() : '—';
     }
   }
   document.querySelectorAll('#block-contacts input').forEach((i) => {
@@ -292,8 +296,9 @@
   function validateAndSubmit() {
     let ok = true;
     const checks = [
-      { id: 'f-fio', check: (v) => v.trim().split(/\s+/).length >= 2 },
       { id: 'f-phone', check: (v) => v.replace(/\D/g, '').length >= 11 },
+      { id: 'f-firstname', check: (v) => v.trim().length >= 2 },
+      { id: 'f-lastname', check: (v) => v.trim().length >= 2 },
     ];
     if (state.delivery === 'pvz' && !state.pvzSelected) {
       ok = false;
