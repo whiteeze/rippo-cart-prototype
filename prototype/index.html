@@ -9,8 +9,8 @@
   <!-- CSS шапки 1:1 с rippo.ru -->
   <link rel="stylesheet" href="css/rippo-site-mclib.css" />
   <link rel="stylesheet" href="css/rippo-site-local.css" />
-  <link rel="stylesheet" href="css/rippo.css?v=20261126h" />
-  <link rel="stylesheet" href="css/header-bridge.css?v=20261126h" />
+  <link rel="stylesheet" href="css/rippo.css?v=20261126j" />
+  <link rel="stylesheet" href="css/header-bridge.css?v=20261126j" />
 </head>
 <body>
   <div class="proto-bar">
@@ -636,44 +636,85 @@ Bottom sheet для мини-корзины (85vh)
 
   <!-- DRAWER -->
   <div class="overlay" id="overlay"></div>
-  <aside class="drawer" id="drawer" aria-label="Корзина">
-    <div class="drawer-head">
-      <b style="font-size:18px">Корзина</b>
-      <button type="button" id="close-drawer" aria-label="Закрыть" style="border:0;background:none;font-size:22px;cursor:pointer">×</button>
-    </div>
-    <div class="drawer-body">
-      <div class="line drawer-line" data-line="1">
-        <img class="thumb" src="media/prostavka.jpg" alt="Проставка 30 мм" width="64" height="64" />
-        <div>
-          <div class="line-title">Передние проставки для<br>Toyota Camry IX (XV70) - 2017 по 2022 Седан</div>
-          <div class="line-meta">Высота: 30 мм<br><b>1 890 ₽</b> за комплект</div>
-          <div class="qty" aria-label="Количество комплектов">
-            <button type="button" data-qty="-1" aria-label="Уменьшить">−</button>
-            <span class="qty-val">1</span>
-            <button type="button" data-qty="1" aria-label="Увеличить">+</button>
-          </div>
-          <button class="link-danger" type="button" data-remove>Удалить</button>
-        </div>
+  <aside class="drawer rp-drawer" id="drawer" aria-label="Корзина">
+    <div class="rp-drawer__scroll">
+      <button type="button" class="rp-drawer__close" id="close-drawer" aria-label="Закрыть">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+      <div class="rp-drawer__head">
+        <span class="rp-drawer__title">Корзина</span>
+        <button type="button" class="rp-drawer__clear" id="drawer-clear">
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>Очистить
+        </button>
       </div>
-      <div class="line drawer-line" data-line="2">
-        <img class="thumb" src="media/prostavka.jpg" alt="Проставка 20 мм" width="64" height="64" />
-        <div>
-          <div class="line-title">Задние проставки для<br>Kia Sportage QL</div>
-          <div class="line-meta">Высота: 20 мм<br><b>1 350 ₽</b> за комплект</div>
-          <div class="qty" aria-label="Количество комплектов">
-            <button type="button" data-qty="-1" aria-label="Уменьшить">−</button>
-            <span class="qty-val">2</span>
-            <button type="button" data-qty="1" aria-label="Увеличить">+</button>
+
+      <ul class="rp-drawer__list" id="drawer-list">
+        <li class="rp-item" data-line="1">
+          <div class="rp-item__image"><img src="media/prostavka.jpg" alt="Передние проставки" width="124" height="82" /></div>
+          <div class="rp-item__desc">
+            <span class="rp-item__id">R-182</span>
+            <a class="rp-item__title" href="#">Передние проставки для<br>Toyota Camry IX (XV70) - 2017 по 2022 Седан</a>
+            <p class="rp-item__text">Высота: 30 мм</p>
           </div>
-          <button class="link-danger" type="button" data-remove>Удалить</button>
+          <div class="rp-item__bottom">
+            <div class="rp-qty" aria-label="Количество комплектов">
+              <button type="button" data-qty="-1" aria-label="Уменьшить">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" data-qty="1" aria-label="Увеличить">+</button>
+            </div>
+            <div class="rp-item__price">
+              <span class="rp-item__price-current line-sum">1 890 ₽</span>
+              <small>1 890 ₽ / комплект</small>
+            </div>
+          </div>
+          <button type="button" class="rp-item__remove" data-remove aria-label="Удалить">
+            <svg width="16" height="16" viewBox="0 0 512 512" aria-hidden="true"><g fill="#37404D"><path d="M444.9 66.9h-99.4V47c0-21.9-17.8-39.7-39.7-39.7h-99.3c-21.9 0-39.7 17.8-39.7 39.7v19.9H67.4v19.9h20.5l19.9 377.5c0 21.9 17.8 39.7 39.7 39.7h218.5c21.9 0 39.7-17.8 39.7-39.7l19.5-377.5h19.6V66.9zM186.6 47c0-11 8.9-19.9 19.9-19.9h99.3c11 0 19.9 8.9 19.9 19.9v19.9H186.6V47zm199.3 416.2v1c0 10.9-8.9 19.9-19.9 19.9H147.5c-10.9 0-19.9-9-19.9-19.9l-19.9-376.5h297.7l-19.5 376.5z"/><rect height="317.9" width="19.9" x="246.2" y="126.5"/></g></svg>
+          </button>
+        </li>
+        <li class="rp-item" data-line="2">
+          <div class="rp-item__image"><img src="media/prostavka.jpg" alt="Задние проставки" width="124" height="82" /></div>
+          <div class="rp-item__desc">
+            <span class="rp-item__id">R-226</span>
+            <a class="rp-item__title" href="#">Задние проставки для<br>Kia Sportage QL</a>
+            <p class="rp-item__text">Высота: 20 мм</p>
+          </div>
+          <div class="rp-item__bottom">
+            <div class="rp-qty" aria-label="Количество комплектов">
+              <button type="button" data-qty="-1" aria-label="Уменьшить">−</button>
+              <span class="qty-val">2</span>
+              <button type="button" data-qty="1" aria-label="Увеличить">+</button>
+            </div>
+            <div class="rp-item__price">
+              <span class="rp-item__price-current line-sum">2 700 ₽</span>
+              <small>1 350 ₽ / комплект</small>
+            </div>
+          </div>
+          <button type="button" class="rp-item__remove" data-remove aria-label="Удалить">
+            <svg width="16" height="16" viewBox="0 0 512 512" aria-hidden="true"><g fill="#37404D"><path d="M444.9 66.9h-99.4V47c0-21.9-17.8-39.7-39.7-39.7h-99.3c-21.9 0-39.7 17.8-39.7 39.7v19.9H67.4v19.9h20.5l19.9 377.5c0 21.9 17.8 39.7 39.7 39.7h218.5c21.9 0 39.7-17.8 39.7-39.7l19.5-377.5h19.6V66.9zM186.6 47c0-11 8.9-19.9 19.9-19.9h99.3c11 0 19.9 8.9 19.9 19.9v19.9H186.6V47zm199.3 416.2v1c0 10.9-8.9 19.9-19.9 19.9H147.5c-10.9 0-19.9-9-19.9-19.9l-19.9-376.5h297.7l-19.5 376.5z"/><rect height="317.9" width="19.9" x="246.2" y="126.5"/></g></svg>
+          </button>
+        </li>
+      </ul>
+      <p class="rp-drawer__empty" id="drawer-empty" hidden>Корзина пуста</p>
+
+      <div class="rp-data">
+        <span class="rp-data__title">Стоимость</span>
+        <table class="rp-data__table">
+          <tbody>
+            <tr><td>Сумма</td><td class="text-right" id="drawer-goods">4 590 ₽</td></tr>
+            <tr><td>Скидка для всех</td><td class="text-right" id="drawer-discount">− 0 ₽</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td>Итого</td><td class="text-right" id="drawer-sum">4 590 ₽</td></tr>
+          </tfoot>
+        </table>
+        <button class="rp-btn rp-btn--primary" type="button" data-go="checkout" id="drawer-checkout">Оформление заказа</button>
+        <div class="rp-data__quick">
+          <div class="rp-data__quick-row">
+            <button class="rp-btn rp-btn--grey" type="button" data-go="quick">Быстрый заказ</button>
+            <button class="rp-btn rp-btn--black" type="button" id="continue-shopping-drawer">Продолжить покупки</button>
+          </div>
+          <p class="rp-data__quick-text">Наш менеджер перезвонит вам и оформит заказ за вас</p>
         </div>
-      </div>
-    </div>
-    <div class="drawer-foot">
-      <div class="summary-row total" style="margin-top:0;border:0;padding:0 0 12px"><span>Итого</span><span id="drawer-sum">4 590 ₽</span></div>
-      <div class="btn-row">
-        <button class="btn btn-primary" type="button" data-go="checkout" id="drawer-checkout">Оформить заказ</button>
-        <button class="btn btn-secondary" type="button" id="continue-shopping-drawer">Продолжить покупки</button>
       </div>
     </div>
   </aside>
@@ -696,6 +737,6 @@ Bottom sheet для мини-корзины (85vh)
 
   <script src="https://cdn.jsdelivr.net/npm/@dadata/suggestions@25.11.0/dist/suggestions.min.js"></script>
   <script src="js/plugins.js"></script>
-  <script src="js/app.js?v=20261126h"></script>
+  <script src="js/app.js?v=20261126j"></script>
 </body>
 </html>

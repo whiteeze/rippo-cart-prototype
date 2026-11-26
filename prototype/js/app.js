@@ -63,6 +63,9 @@
     if ($('#sum-total')) $('#sum-total').textContent = money(a);
     if ($('#cart-sum-head')) $('#cart-sum-head').textContent = money(a);
     if ($('#drawer-sum')) $('#drawer-sum').textContent = money(a);
+    if ($('#drawer-goods')) $('#drawer-goods').textContent = money(g);
+    if ($('#drawer-discount')) $('#drawer-discount').textContent = '− ' + money(d);
+    if ($('#drawer-empty')) $('#drawer-empty').hidden = $$('#drawer-list [data-line]').length > 0;
     if ($('#cart-count')) $('#cart-count').textContent = String(qtyTotal());
 
     const goodsLabel = document.querySelector('#cart-summary .summary-row span.dim');
@@ -194,6 +197,11 @@
     openDrawer();
   });
   $('#close-drawer')?.addEventListener('click', closeDrawer);
+  $('#drawer-clear')?.addEventListener('click', () => {
+    state.lines = [];
+    $$('[data-line]').forEach((el) => el.remove());
+    renderSums();
+  });
   $('#overlay')?.addEventListener('click', closeDrawer);
   $('#drawer-checkout')?.addEventListener('click', () => showScreen('checkout'));
 

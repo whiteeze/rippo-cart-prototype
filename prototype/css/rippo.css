@@ -38,7 +38,7 @@ img { max-width: 100%; display: block; }
   display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
   padding: 8px 12px; font-size: 12px;
 }
-.proto-bar { justify-content: center; }
+.proto-bar { justify-content: center; z-index: 1000 !important; }
 .proto-bar select { width: auto; flex: 0 0 auto; }
 .proto-bar .proto-note { margin-left: 0; flex: 1 1 100%; text-align: center; }
 .proto-bar > span { text-align: center; }
@@ -839,4 +839,104 @@ body.mobile .checkout-footer .btn {
 .drawer-line .thumb,
 .mobile .line .thumb {
   width: 64px; max-width: 64px; height: 64px; min-height: 64px;
+}
+
+/* ===== Drawer как на rippo.ru: серый фон + отдельные белые карточки ===== */
+.drawer.rp-drawer {
+  width: min(528px, 100%);
+  background: #f7f7fb;
+  color: #343434;
+  font-family: Montserrat, Poppins, Arial, sans-serif;
+}
+.rp-drawer .rp-drawer__scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 40px 25px;
+  -webkit-overflow-scrolling: touch;
+}
+.rp-drawer .rp-drawer__close {
+  display: flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; margin: 0 0 40px; padding: 0;
+  border: 0; background: transparent; color: #343434; cursor: pointer;
+}
+.rp-drawer .rp-drawer__head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin: 0 0 20px; padding: 0; background: transparent; border: 0;
+}
+.rp-drawer .rp-drawer__title { font-size: 25px; line-height: 1.2; font-weight: 500; color: #343434; }
+.rp-drawer .rp-drawer__clear {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 0; border: 0; background: transparent; cursor: pointer;
+  font: inherit; font-size: 14px; color: #4791ff;
+}
+.rp-drawer .rp-drawer__clear svg { color: #ff4d4d; }
+
+.rp-drawer .rp-drawer__list { list-style: none; margin: 0 0 10px; padding: 0; }
+.rp-drawer .rp-item {
+  position: relative;
+  display: grid; grid-template-columns: 124px 1fr; gap: 0 16px;
+  margin: 0 0 10px; padding: 20px 20px 18px;
+  background: #fff; border-radius: 10px; box-shadow: none; border: 0;
+}
+.rp-drawer .rp-item__image { width: 124px; height: 82px; display: flex; align-items: center; justify-content: center; }
+.rp-drawer .rp-item__image img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+.rp-drawer .rp-item__desc { min-width: 0; padding-right: 26px; }
+.rp-drawer .rp-item__id { display: block; margin: 0 0 5px; font-size: 14px; line-height: 1; color: #bdc2d3; }
+.rp-drawer .rp-item__title {
+  display: block; margin: 0 0 5px; font-size: 13px; line-height: 1.35; font-weight: 500;
+  color: #343434; text-decoration: none;
+}
+.rp-drawer .rp-item__text { margin: 0; font-size: 14px; line-height: 1.35; color: #343434; }
+.rp-drawer .rp-item__bottom {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 14px;
+}
+.rp-drawer .rp-qty {
+  display: inline-flex; align-items: center;
+  height: 38px; border: 1px solid #ededf9; border-radius: 5px; background: #fff;
+}
+.rp-drawer .rp-qty button {
+  width: 34px; height: 100%; border: 0; background: transparent; cursor: pointer;
+  font-size: 18px; line-height: 1; color: #343434;
+}
+.rp-drawer .rp-qty .qty-val { min-width: 30px; text-align: center; font-size: 16px; }
+.rp-drawer .rp-item__price { text-align: right; }
+.rp-drawer .rp-item__price-current { display: block; font-size: 18px; line-height: 1.2; color: #343434; }
+.rp-drawer .rp-item__price small { display: block; margin-top: 2px; font-size: 13px; color: #bdc2d3; }
+.rp-drawer .rp-item__remove {
+  position: absolute; top: 12px; right: 12px;
+  display: flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; padding: 0; border: 0; background: transparent; cursor: pointer;
+  opacity: .75;
+}
+.rp-drawer .rp-item__remove:hover { opacity: 1; }
+.rp-drawer .rp-drawer__empty { margin: 0 0 10px; padding: 30px 20px; background: #fff; border-radius: 10px; text-align: center; color: #bdc2d3; }
+.rp-drawer .rp-drawer__empty[hidden] { display: none; }
+
+.rp-drawer .rp-data { padding: 20px 20px 25px; background: #fff; border-radius: 10px; }
+.rp-drawer .rp-data__title { display: block; margin: 0 0 30px; font-size: 22px; line-height: 1; font-weight: 500; }
+.rp-drawer .rp-data__table { width: 100%; margin: 0 0 30px; border-collapse: collapse; font-size: 15px; }
+.rp-drawer .rp-data__table td { padding: 5px 0; }
+.rp-drawer .rp-data__table .text-right { text-align: right; }
+.rp-drawer .rp-data__table tfoot td { padding-top: 12px; font-size: 18px; font-weight: 600; }
+.rp-drawer .rp-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 100%; padding: 10px 20px; border: 0; border-radius: 5px; cursor: pointer;
+  font: inherit; font-size: 16px; font-weight: 500; line-height: 1.2; text-decoration: none;
+}
+.rp-drawer .rp-btn--primary { height: 60px; background: #fdef39; color: #000; }
+.rp-drawer .rp-btn--primary:hover { filter: brightness(.96); }
+.rp-drawer .rp-btn--grey { height: 50px; background: #f1f1f5; color: #343434; }
+.rp-drawer .rp-btn--black { height: 50px; background: #000; color: #fff; }
+.rp-drawer .rp-data__quick { padding: 20px 0 0; }
+.rp-drawer .rp-data__quick-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.rp-drawer .rp-data__quick-text { margin: 12px 0 0; font-size: 14px; color: #bdc2d3; }
+
+@media (max-width: 520px) {
+  .rp-drawer .rp-drawer__scroll { padding: 20px 12px 28px; }
+  .rp-drawer .rp-drawer__close { margin-bottom: 16px; }
+  .rp-drawer .rp-data__quick-row { grid-template-columns: 1fr; }
+  .rp-drawer .rp-item { grid-template-columns: 96px 1fr; gap: 0 12px; padding: 16px 14px; }
+  .rp-drawer .rp-item__image { width: 96px; height: 64px; }
 }
