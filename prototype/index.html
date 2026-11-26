@@ -47,38 +47,58 @@
         <div class="wire-label">Экран · Основная корзина · desktop/mobile</div>
         <h1>Корзина</h1>
         <div class="grid-checkout">
-          <div class="card">
-            <div class="line" data-line="1">
-              <img class="thumb" src="media/prostavka.jpg" alt="Проставка RIPPO 30 мм" width="96" height="96" loading="eager" />
-              <div>
-                <p class="line-title">Проставки увеличения клиренса</p>
-                <div class="line-meta">Toyota Camry XV70 · Артикул RIP-TC-30 · Толщина 30 мм</div>
-                <div class="line-meta">1 890 ₽ за комплект</div>
-                <div class="qty" aria-label="Количество комплектов">
-                  <button type="button" data-qty="-1" aria-label="Уменьшить">−</button>
-                  <span class="qty-val">1</span>
-                  <button type="button" data-qty="1" aria-label="Увеличить">+</button>
+          <div class="cart cart--proto">
+            <ul class="cart__list">
+              <li class="cart__item" data-line="1">
+                <div class="cart__item-image">
+                  <img class="thumb" src="media/prostavka.jpg" alt="Проставка RIPPO 30 мм" width="160" height="140" loading="eager" />
                 </div>
-                <div class="hint">Количество = число комплектов, не отдельных проставок</div>
-                <button class="link-danger" type="button" data-remove>Удалить</button>
-              </div>
-              <div class="price-col"><div class="price line-sum">1 890 ₽</div></div>
-            </div>
-            <div class="line" data-line="2">
-              <img class="thumb" src="media/prostavka.jpg" alt="Проставка RIPPO 20 мм" width="96" height="96" loading="eager" />
-              <div>
-                <p class="line-title">Проставки увеличения клиренса</p>
-                <div class="line-meta">Kia Sportage QL · Артикул RIP-KS-20 · Толщина 20 мм</div>
-                <div class="line-meta">1 350 ₽ за комплект</div>
-                <div class="qty">
-                  <button type="button" data-qty="-1">−</button>
-                  <span class="qty-val">2</span>
-                  <button type="button" data-qty="1">+</button>
+                <div class="cart__item-desc">
+                  <span class="cart__item-id">Артикул RIP-TC-30</span>
+                  <a class="cart__item-title line-title" href="#">Проставки увеличения клиренса</a>
+                  <p class="cart__item-text">Toyota Camry XV70 · Толщина 30 мм</p>
                 </div>
-                <button class="link-danger" type="button" data-remove>Удалить</button>
-              </div>
-              <div class="price-col"><div class="price line-sum">2 700 ₽</div></div>
-            </div>
+                <div class="cart__item-price">
+                  <ins class="price line-sum">1 890 ₽</ins>
+                  <small>1 890 ₽ / комплект</small>
+                </div>
+                <div class="cart__item-number">
+                  <div class="qty" aria-label="Количество комплектов">
+                    <button type="button" data-qty="-1" aria-label="Уменьшить">−</button>
+                    <span class="qty-val">1</span>
+                    <button type="button" data-qty="1" aria-label="Увеличить">+</button>
+                  </div>
+                  <div class="hint">Кол-во = комплекты</div>
+                </div>
+                <div class="cart__item-action">
+                  <button class="cart__item-action-link link-danger" type="button" data-remove>Удалить</button>
+                </div>
+              </li>
+              <li class="cart__item" data-line="2">
+                <div class="cart__item-image">
+                  <img class="thumb" src="media/prostavka.jpg" alt="Проставка RIPPO 20 мм" width="160" height="140" loading="eager" />
+                </div>
+                <div class="cart__item-desc">
+                  <span class="cart__item-id">Артикул RIP-KS-20</span>
+                  <a class="cart__item-title line-title" href="#">Проставки увеличения клиренса</a>
+                  <p class="cart__item-text">Kia Sportage QL · Толщина 20 мм</p>
+                </div>
+                <div class="cart__item-price">
+                  <ins class="price line-sum">2 700 ₽</ins>
+                  <small>1 350 ₽ / комплект</small>
+                </div>
+                <div class="cart__item-number">
+                  <div class="qty">
+                    <button type="button" data-qty="-1">−</button>
+                    <span class="qty-val">2</span>
+                    <button type="button" data-qty="1">+</button>
+                  </div>
+                </div>
+                <div class="cart__item-action">
+                  <button class="cart__item-action-link link-danger" type="button" data-remove>Удалить</button>
+                </div>
+              </li>
+            </ul>
           </div>
 
           <aside class="card summary" id="cart-summary">
@@ -182,31 +202,57 @@
           <div class="checkout-step" id="block-cart-items">
             <h2>Ваши товары</h2>
             <div class="checkout-step-body">
-              <div class="line checkout-product" data-line="1">
-                <img class="thumb" src="media/prostavka.jpg" alt="Проставка RIPPO 30 мм" width="96" height="96" loading="eager" />
-                <div>
-                  <p class="line-title">Проставки увеличения клиренса</p>
-                  <div class="line-meta">Toyota Camry XV70 · RIP-TC-30 · 30 мм</div>
-                  <div class="qty">
-                    <button type="button" data-qty="-1">−</button>
-                    <span class="qty-val">1</span>
-                    <button type="button" data-qty="1">+</button>
-                  </div>
-                </div>
-                <div class="price-col"><div class="price line-sum">1 890 ₽</div></div>
-              </div>
-              <div class="line checkout-product" data-line="2">
-                <img class="thumb" src="media/prostavka.jpg" alt="Проставка RIPPO 20 мм" width="96" height="96" loading="eager" />
-                <div>
-                  <p class="line-title">Проставки увеличения клиренса</p>
-                  <div class="line-meta">Kia Sportage QL · RIP-KS-20 · 20 мм</div>
-                  <div class="qty">
-                    <button type="button" data-qty="-1">−</button>
-                    <span class="qty-val">2</span>
-                    <button type="button" data-qty="1">+</button>
-                  </div>
-                </div>
-                <div class="price-col"><div class="price line-sum">2 700 ₽</div></div>
+              <div class="cart cart--proto">
+                <ul class="cart__list">
+                  <li class="cart__item" data-line="1">
+                    <div class="cart__item-image">
+                      <img class="thumb" src="media/prostavka.jpg" alt="Проставка RIPPO 30 мм" width="160" height="140" loading="eager" />
+                    </div>
+                    <div class="cart__item-desc">
+                      <span class="cart__item-id">Артикул RIP-TC-30</span>
+                      <a class="cart__item-title line-title" href="#">Проставки увеличения клиренса</a>
+                      <p class="cart__item-text">Toyota Camry XV70 · Толщина 30 мм</p>
+                    </div>
+                    <div class="cart__item-price">
+                      <ins class="price line-sum">1 890 ₽</ins>
+                      <small>1 890 ₽ / комплект</small>
+                    </div>
+                    <div class="cart__item-number">
+                      <div class="qty">
+                        <button type="button" data-qty="-1">−</button>
+                        <span class="qty-val">1</span>
+                        <button type="button" data-qty="1">+</button>
+                      </div>
+                    </div>
+                    <div class="cart__item-action">
+                      <button class="cart__item-action-link link-danger" type="button" data-remove>Удалить</button>
+                    </div>
+                  </li>
+                  <li class="cart__item" data-line="2">
+                    <div class="cart__item-image">
+                      <img class="thumb" src="media/prostavka.jpg" alt="Проставка RIPPO 20 мм" width="160" height="140" loading="eager" />
+                    </div>
+                    <div class="cart__item-desc">
+                      <span class="cart__item-id">Артикул RIP-KS-20</span>
+                      <a class="cart__item-title line-title" href="#">Проставки увеличения клиренса</a>
+                      <p class="cart__item-text">Kia Sportage QL · Толщина 20 мм</p>
+                    </div>
+                    <div class="cart__item-price">
+                      <ins class="price line-sum">2 700 ₽</ins>
+                      <small>1 350 ₽ / комплект</small>
+                    </div>
+                    <div class="cart__item-number">
+                      <div class="qty">
+                        <button type="button" data-qty="-1">−</button>
+                        <span class="qty-val">2</span>
+                        <button type="button" data-qty="1">+</button>
+                      </div>
+                    </div>
+                    <div class="cart__item-action">
+                      <button class="cart__item-action-link link-danger" type="button" data-remove>Удалить</button>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

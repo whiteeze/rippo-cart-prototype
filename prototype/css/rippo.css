@@ -148,7 +148,7 @@ html.dadata-live .suggest-list { display: none !important; }
 .error-text { color: var(--error); font-size: 12px; margin-top: 6px; }
 .ok-text { color: var(--ok); font-size: 12px; }
 
-/* —— Cart line —— */
+/* —— Cart line (drawer / compact) —— */
 .line {
   display: grid; grid-template-columns: 96px 1fr auto; gap: 16px;
   padding: 16px 0; border-bottom: 1px solid var(--line);
@@ -176,7 +176,7 @@ img.thumb { padding: 0; color: transparent; font-size: 0; }
 .line-meta { font-size: 12px; color: var(--muted); }
 .price { font-weight: 800; white-space: nowrap; }
 .qty {
-  display: inline-flex; align-items: center; gap: 0; margin-top: 10px;
+  display: inline-flex; align-items: center; gap: 0; margin-top: 0;
   border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
 }
 .qty button {
@@ -186,7 +186,204 @@ img.thumb { padding: 0; color: transparent; font-size: 0; }
 .qty span { min-width: 36px; text-align: center; font-weight: 700; font-size: 14px; }
 .link-danger {
   background: none; border: 0; color: var(--error); font-size: 12px;
-  cursor: pointer; padding: 0; margin-top: 8px;
+  cursor: pointer; padding: 0; margin-top: 0;
+}
+
+/* —— Левый блок корзины 1:1 как cart__item на rippo.ru —— */
+#app-frame .cart.cart--proto {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+#app-frame .cart.cart--proto .cart__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+#app-frame .cart.cart--proto .cart__list > li {
+  margin: 0;
+}
+#app-frame .cart.cart--proto .cart__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 140px;
+  padding: 16px 16px 16px 180px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+#app-frame .cart.cart--proto .cart__item-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 160px;
+  height: 100%;
+  min-height: 140px;
+  margin: 0;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 0;
+  border-right: 1px solid #ededf9;
+  border-radius: 10px 0 0 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+#app-frame .cart.cart--proto .cart__item-image .thumb,
+#app-frame .cart.cart--proto .cart__item-image img {
+  width: 100%;
+  max-width: 136px;
+  height: auto;
+  max-height: 116px;
+  object-fit: contain;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  aspect-ratio: auto;
+}
+#app-frame .cart.cart--proto .cart__item-desc {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 280px;
+  padding: 0;
+  margin: 0;
+}
+#app-frame .cart.cart--proto .cart__item-id {
+  display: block;
+  margin: 0 0 6px;
+  font-size: 13px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: #bdc2d3;
+}
+#app-frame .cart.cart--proto .cart__item-title {
+  display: block;
+  margin: 0 0 6px;
+  font-size: 15px;
+  line-height: 1.35;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+#app-frame .cart.cart--proto .cart__item-title:hover {
+  color: #000;
+}
+#app-frame .cart.cart--proto .cart__item-text {
+  display: block;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 400;
+  color: #1a1a1a;
+}
+#app-frame .cart.cart--proto .cart__item-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 120px;
+  margin: 0 0 0 auto;
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 700;
+  white-space: nowrap;
+}
+#app-frame .cart.cart--proto .cart__item-price ins {
+  text-decoration: none;
+  margin: 0;
+  color: #1a1a1a;
+}
+#app-frame .cart.cart--proto .cart__item-price small {
+  flex: 0 0 100%;
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: #bdc2d3;
+}
+#app-frame .cart.cart--proto .cart__item-number {
+  position: relative;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  flex: 0 0 auto;
+  width: auto;
+  margin: 0;
+}
+#app-frame .cart.cart--proto .cart__item-number .hint {
+  margin-top: 6px;
+  max-width: 120px;
+}
+#app-frame .cart.cart--proto .cart__item-action {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  z-index: 2;
+}
+#app-frame .cart.cart--proto .cart__item-action .link-danger,
+#app-frame .cart.cart--proto .cart__item-action-link {
+  margin: 0;
+  font-size: 12px;
+  color: #d32f2f;
+  text-decoration: none;
+}
+
+/* Mobile 390: карточка как на телефоне rippo */
+body.mobile #app-frame .cart.cart--proto .cart__item {
+  display: block;
+  padding: 16px 16px 70px 96px;
+  min-height: 0;
+}
+body.mobile #app-frame .cart.cart--proto .cart__item-image {
+  top: 16px;
+  left: 16px;
+  width: 68px;
+  height: 68px;
+  min-height: 68px;
+  padding: 6px;
+  border: 1px solid #ededf9;
+  border-radius: 5px;
+}
+body.mobile #app-frame .cart.cart--proto .cart__item-image .thumb,
+body.mobile #app-frame .cart.cart--proto .cart__item-image img {
+  max-width: 100%;
+  max-height: 100%;
+}
+body.mobile #app-frame .cart.cart--proto .cart__item-desc {
+  max-width: none;
+  padding-right: 48px;
+}
+body.mobile #app-frame .cart.cart--proto .cart__item-text {
+  display: none;
+}
+body.mobile #app-frame .cart.cart--proto .cart__item-price {
+  margin: 10px 0 0;
+  width: auto;
+}
+body.mobile #app-frame .cart.cart--proto .cart__item-number {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+  width: auto;
+}
+body.mobile #app-frame .cart.cart--proto .cart__item-number .hint {
+  display: none;
+}
+body.mobile #app-frame .cart.cart--proto .cart__item-action {
+  top: 14px;
+  right: 12px;
 }
 
 /* —— Forms —— */
