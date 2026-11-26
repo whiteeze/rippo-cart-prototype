@@ -56,28 +56,48 @@
     const a = afterDiscount();
     const del = deliveryCost();
     const fee = codFee();
+    const empty = state.lines.length === 0;
+    const qty = qtyTotal();
 
     if ($('#sum-goods')) $('#sum-goods').textContent = money(g);
     if ($('#sum-discount')) $('#sum-discount').textContent = '− ' + money(d);
     if ($('#sum-after')) $('#sum-after').textContent = money(a);
     if ($('#sum-total')) $('#sum-total').textContent = money(a);
-    if ($('#cart-sum-head')) $('#cart-sum-head').textContent = money(a);
+    $$('#cart-sum-head, .apdPriceJs, .header__sticky-counter > .cart-total-text').forEach((el) => {
+      el.textContent = money(a);
+    });
     if ($('#drawer-sum')) $('#drawer-sum').textContent = money(a);
     if ($('#drawer-goods')) $('#drawer-goods').textContent = money(g);
     if ($('#drawer-discount')) $('#drawer-discount').textContent = '− ' + money(d);
-    if ($('#drawer-empty')) $('#drawer-empty').hidden = $$('#drawer-list [data-line]').length > 0;
-    if ($('#cart-count')) $('#cart-count').textContent = String(qtyTotal());
+    if ($('#drawer-empty')) $('#drawer-empty').hidden = !empty;
+    // Все счётчики корзины (шапка + sticky)
+    $$('.cart-total-counter, #cart-count').forEach((el) => {
+      el.textContent = String(qty);
+    });
+
+    // Нулевую скидку скрываем — не выглядит как заглушка
+    $$('#sum-discount, #chk-discount, #drawer-discount').forEach((el) => {
+      const row = el.closest('.summary-row, tr');
+      if (row) row.classList.toggle('hidden', d <= 0);
+    });
+    $$('#sum-after').forEach((el) => {
+      el.closest('.summary-row')?.classList.toggle('hidden', d <= 0);
+    });
 
     const goodsLabel = document.querySelector('#cart-summary .summary-row span.dim');
-    if (goodsLabel && goodsLabel.textContent.includes('Товары')) {
-      goodsLabel.textContent = `Товары (${qtyTotal()} компл.)`;
+    if (goodsLabel && /Товары/.test(goodsLabel.textContent)) {
+      goodsLabel.textContent = `Товары (${qty} компл.)`;
     }
-    if ($('#confirm-qty')) $('#confirm-qty').textContent = `${qtyTotal()} комплект(ов)`;
+    if ($('#confirm-qty')) $('#confirm-qty').textContent = `${qty} комплект(ов)`;
 
     $$('[data-line]').forEach((el) => {
       const id = Number(el.dataset.line);
       const line = state.lines.find((l) => l.id === id);
-      if (!line) return;
+      if (!line) {
+        el.hidden = true;
+        return;
+      }
+      el.hidden = false;
       const qtyEl = el.querySelector('.qty-val');
       const sumEl = el.querySelector('.line-sum');
       if (qtyEl) {
@@ -86,6 +106,17 @@
       }
       if (sumEl) sumEl.textContent = money(line.unit * line.qty);
     });
+
+    // Пустая корзина
+    $('#cart-empty')?.toggleAttribute('hidden', !empty);
+    $$('.cart__list').forEach((list) => list.classList.toggle('is-empty', empty));
+    const checkoutBtns = $$('#cart-summary [data-go="checkout"], #screen-cart [data-go="checkout"], #screen-cart-mobile [data-go="checkout"], #drawer-checkout');
+    checkoutBtns.forEach((btn) => {
+      btn.disabled = empty;
+      btn.classList.toggle('is-disabled', empty);
+      btn.setAttribute('aria-disabled', empty ? 'true' : 'false');
+    });
+    $('#cart-summary')?.classList.toggle('cart-summary--empty', empty);
 
     if ($('#chk-goods')) $('#chk-goods').textContent = money(g);
     if ($('#chk-discount')) $('#chk-discount').textContent = '− ' + money(d);
@@ -109,7 +140,6 @@
     }
     if ($('#cod-fee')) $('#cod-fee').textContent = money(fee);
     if ($('#cod-grand')) $('#cod-grand').textContent = money(grand());
-
   }
 
   function updateDeliveryUI() {
@@ -169,16 +199,25 @@
       b.classList.toggle('active', b.dataset.screen === id);
     });
     closeDrawer();
+    closeMobileCatalog();
     window.scrollTo(0, 0);
   }
 
+  function isMobileViewport() {
+    return document.body.classList.contains('mobile');
+  }
   function openDrawer() {
+    // Mobile 390 — без выезжающей карточки, только экран корзины
+    if (isMobileViewport()) {
+      showScreen('cart');
+      return;
+    }
     $('#overlay').classList.add('open');
     $('#drawer').classList.add('open');
   }
   function closeDrawer() {
-    $('#overlay').classList.remove('open');
-    $('#drawer').classList.remove('open');
+    $('#overlay')?.classList.remove('open');
+    $('#drawer')?.classList.remove('open');
   }
 
   $$('.proto-bar [data-screen]').forEach((btn) => {
@@ -186,10 +225,13 @@
   });
   document.body.addEventListener('click', (e) => {
     const go = e.target.closest('[data-go]');
-    if (go) {
+    if (!go) return;
+    if (go.disabled || go.getAttribute('aria-disabled') === 'true' || go.classList.contains('is-disabled')) {
       e.preventDefault();
-      showScreen(go.dataset.go);
+      return;
     }
+    e.preventDefault();
+    showScreen(go.dataset.go);
   });
 
   $('#open-drawer')?.addEventListener('click', (e) => {
@@ -203,7 +245,13 @@
     renderSums();
   });
   $('#overlay')?.addEventListener('click', closeDrawer);
-  $('#drawer-checkout')?.addEventListener('click', () => showScreen('checkout'));
+  $('#drawer-checkout')?.addEventListener('click', (e) => {
+    if (!state.lines.length) {
+      e.preventDefault();
+      return;
+    }
+    showScreen('checkout');
+  });
 
   document.querySelector('[data-open-catalog]')?.addEventListener('click', (e) => {
     e.preventDefault();
@@ -219,6 +267,7 @@
     document.body.classList.toggle('real-phone', mobile && realPhone.matches);
     const sel = $('#viewport');
     if (sel) sel.value = mobile ? 'mobile' : 'desktop';
+    if (mobile) closeDrawer();
   }
   // На настоящем телефоне сразу включаем мобильную версию (без рамки)
   if (realPhone.matches) applyViewport(true);
@@ -226,21 +275,51 @@
   $('#viewport')?.addEventListener('change', (e) => {
     const mobile = e.target.value === 'mobile';
     applyViewport(mobile);
-    $('#mobile-menu-links')?.classList.remove('open');
+    closeMobileCatalog();
   });
 
-  $('#open-drawer-mobile')?.addEventListener('click', (e) => {
+  function goCartOrDrawer(e) {
     e.preventDefault();
-    openDrawer();
-  });
+    if (isMobileViewport()) showScreen('cart');
+    else openDrawer();
+  }
+  $('#open-drawer-mobile')?.addEventListener('click', goCartOrDrawer);
   document.querySelector('.js-cart-trigger')?.addEventListener('click', (e) => {
     if (e.currentTarget.id === 'open-drawer-mobile') return;
-    e.preventDefault();
-    openDrawer();
+    goCartOrDrawer(e);
   });
+
+  /* —— Mobile catalog menu (как на rippo.ru) —— */
+  function openMobileCatalog() {
+    const menu = $('#mobile-menu-links');
+    if (!menu) return;
+    menu.hidden = false;
+    menu.classList.add('open');
+    $('#mobile-menu-toggle')?.setAttribute('aria-expanded', 'true');
+  }
+  function closeMobileCatalog() {
+    const menu = $('#mobile-menu-links');
+    if (!menu) return;
+    menu.classList.remove('open');
+    menu.hidden = true;
+    $('#mobile-menu-toggle')?.setAttribute('aria-expanded', 'false');
+  }
+
   $('#mobile-menu-toggle')?.addEventListener('click', (e) => {
     e.preventDefault();
-    $('#mobile-menu-links')?.classList.toggle('open');
+    e.stopPropagation();
+    const menu = $('#mobile-menu-links');
+    if (menu?.classList.contains('open')) closeMobileCatalog();
+    else openMobileCatalog();
+  });
+  document.addEventListener('click', (e) => {
+    const menu = $('#mobile-menu-links');
+    if (!menu?.classList.contains('open')) return;
+    if (e.target.closest('#mobile-menu-links') || e.target.closest('#mobile-menu-toggle')) return;
+    closeMobileCatalog();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMobileCatalog();
   });
 
   function continueShopping() {
@@ -399,7 +478,55 @@
   });
 
   $('#quick-send')?.addEventListener('click', () => {
+    const nameInput = $('#screen-quick input[data-quick="name"]');
+    const phoneInput = $('#screen-quick input[data-quick="phone"]');
+    const nameOk = (nameInput?.value || '').trim().length >= 2;
+    const phoneOk = (phoneInput?.value || '').replace(/\D/g, '').length >= 11;
+    $('#quick-name-field')?.classList.toggle('has-error', !nameOk);
+    $('#quick-phone-field')?.classList.toggle('has-error', !phoneOk);
+    if (!nameOk || !phoneOk) {
+      $('#quick-ok')?.classList.add('hidden');
+      return;
+    }
     $('#quick-ok')?.classList.remove('hidden');
+  });
+
+  // Callback / консультация — заглушка модалки прототипа
+  function openCallbackStub(e) {
+    if (e) e.preventDefault();
+    const modal = $('#callback-stub');
+    const overlay = $('#callback-stub-overlay');
+    if (!modal) return;
+    modal.hidden = false;
+    if (overlay) overlay.hidden = false;
+    requestAnimationFrame(() => {
+      modal.classList.add('open');
+      overlay?.classList.add('open');
+    });
+  }
+  function closeCallbackStub() {
+    const modal = $('#callback-stub');
+    const overlay = $('#callback-stub-overlay');
+    modal?.classList.remove('open');
+    overlay?.classList.remove('open');
+    setTimeout(() => {
+      if (modal && !modal.classList.contains('open')) modal.hidden = true;
+      if (overlay && !overlay.classList.contains('open')) overlay.hidden = true;
+    }, 200);
+  }
+  document.body.addEventListener('click', (e) => {
+    const trigger = e.target.closest('[data-fancybox], [href="#callBack"], [href="#callback-footer"], .hf92j3dks8-btn1, .callback_a');
+    if (!trigger) return;
+    if (trigger.matches('a[href^="tel:"]')) return;
+    openCallbackStub(e);
+  });
+  $('#callback-stub-close')?.addEventListener('click', closeCallbackStub);
+  $('#callback-stub-overlay')?.addEventListener('click', closeCallbackStub);
+
+  // «Мобильная корзина» в proto-bar = Mobile 390 + экран корзины
+  $('#goto-mobile-cart')?.addEventListener('click', () => {
+    applyViewport(true);
+    showScreen('cart');
   });
 
   // Подсказки адреса (прототип DaData-подобного поведения)

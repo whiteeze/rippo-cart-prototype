@@ -291,31 +291,65 @@ body.mobile .header__sticky-counter .cart-total-counter {
   margin: 0;
 }
 
+/* Mobile catalog menu — как на rippo.ru: жёлтый попап над sticky */
+body.mobile .sticky-header-block > .z-50 {
+  overflow: visible;
+}
 body.mobile .mobile-menu-links-block {
   position: absolute;
-  bottom: 100%;
-  left: 0;
-  right: 0;
+  bottom: calc(100% + 4px);
+  left: -72px;
+  right: auto;
+  width: 250px;
+  min-width: 250px;
+  max-width: none;
   background: #fdef39;
-  padding: 12px;
+  padding: 16px 18px;
   text-align: left;
-  border-radius: 8px 8px 0 0;
+  border-radius: 4px;
   display: none;
-  z-index: 950;
+  z-index: 960;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
+  box-sizing: border-box;
 }
-
+body.mobile #site-shell.frame-mobile .mobile-menu-links-block {
+  /* ширина не от узкой колонки sticky, а фиксированная как на rippo */
+  width: 250px;
+  min-width: 250px;
+}
 body.mobile .mobile-menu-links-block.open {
   display: block;
 }
-
+body.mobile .mobile-menu-links-block[hidden] {
+  display: none !important;
+}
+body.mobile .mobile-menu-links-block.open:not([hidden]) {
+  display: block !important;
+}
+body.mobile .mobile-menu-links-block ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+body.mobile .mobile-menu-links-block li + li {
+  margin-top: 10px;
+}
 body.mobile .mobile-menu-links-block a {
   display: block;
-  padding: 8px 4px;
+  padding: 2px 0;
+  color: #111;
+  text-decoration: none;
+  font-size: 15px;
   font-weight: 700;
+  line-height: 1.4;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: break-word;
   min-height: auto;
   align-items: flex-start;
+  text-align: left;
+  width: 100%;
 }
-
 /* «Каталог» скрыт md:hidden на широком окне — в телефонной рамке показываем, как на телефоне */
 body.mobile .sticky-header-block > .z-50 {
   position: relative;
