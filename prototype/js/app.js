@@ -61,7 +61,6 @@
     if ($('#sum-discount')) $('#sum-discount').textContent = '− ' + money(d);
     if ($('#sum-after')) $('#sum-after').textContent = money(a);
     if ($('#sum-total')) $('#sum-total').textContent = money(a);
-    if ($('#sum-total-m')) $('#sum-total-m').textContent = money(a);
     if ($('#cart-sum-head')) $('#cart-sum-head').textContent = money(a);
     if ($('#drawer-sum')) $('#drawer-sum').textContent = money(a);
     if ($('#cart-count')) $('#cart-count').textContent = String(qtyTotal());
@@ -105,9 +104,6 @@
     if ($('#cod-fee')) $('#cod-fee').textContent = money(fee);
     if ($('#cod-grand')) $('#cod-grand').textContent = money(grand());
 
-    // Mobile checkout bar
-    const mobileSum = document.querySelector('#screen-checkout .mobile-bar .sum');
-    if (mobileSum) mobileSum.textContent = money(state.pay === 'cod' ? payNow() : grand());
   }
 
   function updateDeliveryUI() {
@@ -208,7 +204,7 @@
     // В прототипе имитируем возврат в каталог
     window.open('https://rippo.ru/katalog-prostavok/', '_blank', 'noopener');
   }
-  ['#continue-shopping', '#continue-shopping-m', '#continue-shopping-mm', '#continue-shopping-drawer', '#continue-shopping-chk'].forEach((sel) => {
+  ['#continue-shopping', '#continue-shopping-mm', '#continue-shopping-drawer', '#continue-shopping-chk'].forEach((sel) => {
     document.querySelector(sel)?.addEventListener('click', continueShopping);
   });
 
@@ -352,7 +348,6 @@
   }
 
   $('#submit-order')?.addEventListener('click', validateAndSubmit);
-  $('#submit-order-m')?.addEventListener('click', validateAndSubmit);
 
   $('#retry-pay')?.addEventListener('click', (e) => {
     e.preventDefault();
