@@ -200,11 +200,26 @@
   });
 
   $('#viewport')?.addEventListener('change', (e) => {
-    const frame = $('#app-frame');
+    const shell = $('#site-shell') || $('#app-frame');
     const mobile = e.target.value === 'mobile';
-    frame.classList.toggle('frame-mobile', mobile);
-    frame.classList.toggle('frame-desktop', !mobile);
+    shell.classList.toggle('frame-mobile', mobile);
+    shell.classList.toggle('frame-desktop', !mobile);
     document.body.classList.toggle('mobile', mobile);
+    $('#mobile-menu-links')?.classList.remove('open');
+  });
+
+  $('#open-drawer-mobile')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    openDrawer();
+  });
+  document.querySelector('.js-cart-trigger')?.addEventListener('click', (e) => {
+    if (e.currentTarget.id === 'open-drawer-mobile') return;
+    e.preventDefault();
+    openDrawer();
+  });
+  $('#mobile-menu-toggle')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    $('#mobile-menu-links')?.classList.toggle('open');
   });
 
   function continueShopping() {
