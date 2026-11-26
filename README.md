@@ -4,7 +4,13 @@
 
 > По ТЗ **код на сайт не ставится**. Здесь — UX/UI-проект: аудит, сценарии, макеты, кликабельный прототип и спецификации для внедрения на стороне заказчика.
 
-## Как открыть
+## Ссылки для заказчика
+
+- Репозиторий: https://github.com/whiteeze/rippo-cart-prototype
+- Онлайн-просмотр: https://whiteeze.github.io/rippo-cart-prototype/
+- Прототип напрямую: https://whiteeze.github.io/rippo-cart-prototype/prototype/
+
+## Как открыть локально
 
 1. Откройте `index.html` в браузере — навигация по всему комплекту.
 2. Кликабельный прототип: `prototype/index.html`.
