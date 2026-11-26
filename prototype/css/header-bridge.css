@@ -294,8 +294,25 @@ body.mobile .mobile-menu-links-block a {
   align-items: flex-start;
 }
 
+/* «Каталог» скрыт md:hidden на широком окне — в телефонной рамке показываем, как на телефоне */
 body.mobile .sticky-header-block > .z-50 {
   position: relative;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+body.mobile .sticky-header-block {
+  justify-items: stretch;
+  align-items: center;
+}
+body.mobile .sticky-header-block > a,
+body.mobile .sticky-header-block > .z-50 > button {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+body.mobile .sticky-header-block > .z-50 > button {
+  padding: 0;
 }
 
 /* Контент не уезжает под нижнее меню */
