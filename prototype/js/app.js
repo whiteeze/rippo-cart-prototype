@@ -203,7 +203,15 @@
     document.body.classList.toggle('mobile', mobile);
   });
 
-  // Только авторизованный покупатель — данные профиля уже подставлены в разметке
+  function continueShopping() {
+    closeDrawer();
+    // В прототипе имитируем возврат в каталог
+    window.open('https://rippo.ru/katalog-prostavok/', '_blank', 'noopener');
+  }
+  ['#continue-shopping', '#continue-shopping-m', '#continue-shopping-mm', '#continue-shopping-drawer'].forEach((sel) => {
+    document.querySelector(sel)?.addEventListener('click', continueShopping);
+  });
+
   updateConfirm();
 
   document.body.addEventListener('click', (e) => {

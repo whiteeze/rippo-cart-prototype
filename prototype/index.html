@@ -16,7 +16,7 @@
     <button type="button" data-screen="delivery-states">Состояния доставки</button>
     <button type="button" data-screen="result-ok">Успех</button>
     <button type="button" data-screen="result-pay">Оплата не завершена</button>
-    <button type="button" data-screen="auth-gate">Вход обязателен</button>
+    <button type="button" data-screen="cart-mobile">Мобильная корзина</button>
     <button type="button" data-screen="quick">Быстрый заказ</button>
     <button type="button" data-screen="wire">Wireframes</button>
     <select id="viewport">
@@ -27,7 +27,7 @@
       DaData
       <input id="dadata-token" type="password" placeholder="API-ключ" autocomplete="off" />
     </label>
-    <span style="color:#aaa;font-size:11px">Плагины: DaData + СДЭК</span>
+    <span style="color:#aaa;font-size:11px">Стиль RIPPO · жёлтая CTA · без обязательной регистрации</span>
     <span class="proto-note">Кликабельный макет · стиль RIPPO · не боевой сайт</span>
   </div>
 
@@ -112,17 +112,71 @@
             <div class="summary-row"><span class="dim">Доставка</span><span class="dim" id="sum-delivery">Рассчитаем при оформлении</span></div>
             <div class="hint">Стоимость доставки появится после выбора способа. Не показываем как 0 ₽ / «бесплатно».</div>
             <div class="summary-row total"><span>К оформлению</span><span id="sum-total">4 590 ₽</span></div>
-            <button class="btn btn-primary" type="button" data-go="checkout" style="margin-top:14px">Оформить заказ</button>
-            <p class="hint" style="text-align:center;margin-top:10px">Оформление доступно после входа в личный кабинет</p>
+            <div class="btn-row">
+              <button class="btn btn-primary" type="button" data-go="checkout">Оформить заказ</button>
+              <button class="btn btn-secondary" type="button" id="continue-shopping">Продолжить покупки</button>
+            </div>
+            <p class="hint" style="text-align:center;margin-top:10px">Можно оформить без регистрации</p>
           </aside>
         </div>
       </div>
-      <div class="mobile-bar">
-        <div>
-          <div class="muted" style="font-size:11px">К оформлению</div>
-          <div class="sum" id="sum-total-m">4 590 ₽</div>
+      <div class="mobile-bar" id="cart-mobile-bar">
+        <div class="mobile-bar-actions">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
+            <span class="muted" style="font-size:12px">Итого</span>
+            <span class="sum" id="sum-total-m">4 590 ₽</span>
+          </div>
+          <button class="btn btn-primary" type="button" data-go="checkout">Оформить заказ</button>
+          <button class="btn btn-secondary" type="button" id="continue-shopping-m">Продолжить покупки</button>
         </div>
-        <button class="btn btn-primary" type="button" data-go="checkout">Оформить</button>
+      </div>
+    </section>
+
+    <!-- SCREEN: MOBILE CART MOCK (отдельный макет для заказчика) -->
+    <section class="screen" id="screen-cart-mobile">
+      <div class="page" style="max-width:390px;margin:0 auto;padding-bottom:24px">
+        <div class="wire-label">Отдельный мобильный макет корзины · 390px</div>
+        <div class="mobile-only-note" style="display:block">Телефон: товары сверху → итог → две кнопки внизу без перекрытия контента</div>
+        <h1 style="font-size:22px;margin-bottom:12px">Корзина</h1>
+
+        <div class="card" style="padding:12px">
+          <div class="line drawer-line" data-line="1">
+            <div class="thumb">30мм</div>
+            <div>
+              <p class="line-title">Camry · 30 мм</p>
+              <div class="line-meta">1 890 ₽ за комплект</div>
+              <div class="qty">
+                <button type="button" data-qty="-1">−</button>
+                <span class="qty-val">1</span>
+                <button type="button" data-qty="1">+</button>
+              </div>
+              <button class="link-danger" type="button" data-remove>Удалить</button>
+            </div>
+          </div>
+          <div class="line drawer-line" data-line="2">
+            <div class="thumb">20мм</div>
+            <div>
+              <p class="line-title">Sportage · 20 мм</p>
+              <div class="line-meta">1 350 ₽ за комплект</div>
+              <div class="qty">
+                <button type="button" data-qty="-1">−</button>
+                <span class="qty-val">2</span>
+                <button type="button" data-qty="1">+</button>
+              </div>
+              <button class="link-danger" type="button" data-remove>Удалить</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="summary-row"><span class="dim">Товары (3 компл.)</span><span>4 590 ₽</span></div>
+          <div class="summary-row"><span class="dim">Доставка</span><span class="dim">Рассчитаем при оформлении</span></div>
+          <div class="summary-row total"><span>Итого</span><span>4 590 ₽</span></div>
+          <div class="btn-row" style="margin-top:12px">
+            <button class="btn btn-primary" type="button" data-go="checkout">Оформить заказ</button>
+            <button class="btn btn-secondary" type="button" id="continue-shopping-mm">Продолжить покупки</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -135,16 +189,17 @@
           <div class="stack">
             <div class="card" id="block-contacts">
               <h2>1. Получатель</h2>
-              <div class="banner banner-info">Вы вошли в кабинет. Данные из профиля — можете изменить перед отправкой.</div>
+              <div class="banner banner-info auth-only hidden">Вы вошли в кабинет. Данные из профиля — можете изменить.</div>
+              <div class="hint" style="margin-top:-6px;margin-bottom:12px">Регистрация не обязательна. Заказ сохраним по телефону.</div>
               <div class="field" id="f-fio">
                 <label>ФИО <span class="req">*</span></label>
-                <input name="fio" value="Иванов Иван Иванович" placeholder="Иванов Иван Иванович" autocomplete="name" />
+                <input name="fio" placeholder="Иванов Иван Иванович" autocomplete="name" />
                 <div class="error-text hidden">Укажите ФИО полностью — нужно для СДЭК / Почты</div>
               </div>
               <div class="field" id="f-phone">
                 <label>Телефон <span class="req">*</span></label>
-                <input name="phone" type="tel" inputmode="tel" value="+7 900 123-45-67" placeholder="+7 900 123-45-67" />
-                <div class="hint">Заказ будет связан с этим телефоном из вашего профиля.</div>
+                <input name="phone" type="tel" inputmode="tel" placeholder="+7 900 123-45-67" />
+                <div class="hint">По телефону найдём заказ. Вход в кабинет не требуется.</div>
                 <div class="error-text hidden">Введите телефон в формате +7 …</div>
               </div>
             </div>
@@ -326,11 +381,13 @@
         </div>
       </div>
       <div class="mobile-bar">
-        <div>
-          <div class="muted" style="font-size:11px">Итого</div>
-          <div class="sum">4 940 ₽</div>
+        <div class="mobile-bar-actions">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
+            <span class="muted" style="font-size:12px">Итого</span>
+            <span class="sum">4 940 ₽</span>
+          </div>
+          <button class="btn btn-primary" type="button" id="submit-order-m">Оформить заказ</button>
         </div>
-        <button class="btn btn-primary" type="button" id="submit-order-m">Оформить</button>
       </div>
     </section>
 
@@ -387,27 +444,6 @@
           </div>
           <a class="btn btn-primary" id="retry-pay" href="https://pay.linksecurepayment.com/">Перейти к оплате</a>
           <button class="btn btn-secondary" type="button" data-go="checkout" style="margin-top:8px;width:100%">Вернуться к оформлению</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- SCREEN: AUTH GATE -->
-    <section class="screen" id="screen-auth-gate">
-      <div class="page" style="max-width:480px">
-        <div class="card" style="text-align:center">
-          <div class="status-icon warn">!</div>
-          <h1 style="font-size:22px">Войдите, чтобы оформить заказ</h1>
-          <p class="muted">Гостевого оформления нет. Корзина сохранится — после входа продолжите заказ.</p>
-          <div class="field" style="text-align:left;margin-top:20px">
-            <label>Ник <span class="req">*</span></label>
-            <input placeholder="Ваш ник" />
-          </div>
-          <div class="field" style="text-align:left">
-            <label>Телефон <span class="req">*</span></label>
-            <input type="tel" placeholder="+7 900 123-45-67" />
-          </div>
-          <button class="btn btn-primary" type="button" data-go="checkout">Войти и оформить</button>
-          <p class="hint" style="margin-top:12px">Регистрация: ник и телефон</p>
         </div>
       </div>
     </section>
@@ -517,7 +553,10 @@ Bottom sheet для мини-корзины (85vh)
     </div>
     <div class="drawer-foot">
       <div class="summary-row total" style="margin-top:0;border:0;padding:0 0 12px"><span>Итого</span><span id="drawer-sum">4 590 ₽</span></div>
-      <button class="btn btn-primary" type="button" data-go="checkout" id="drawer-checkout">Оформить заказ</button>
+      <div class="btn-row">
+        <button class="btn btn-primary" type="button" data-go="checkout" id="drawer-checkout">Оформить заказ</button>
+        <button class="btn btn-secondary" type="button" id="continue-shopping-drawer">Продолжить покупки</button>
+      </div>
     </div>
   </aside>
 
