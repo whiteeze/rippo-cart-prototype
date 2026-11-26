@@ -14,6 +14,28 @@ header.header.header--v3 {
   cursor: pointer;
 }
 
+/* Desktop: «Заказать звонок» чуть ниже относительно блока телефонов / соседних кнопок */
+body:not(.mobile) .header__desktop .header__group--acc_action_cart {
+  justify-content: flex-end;
+  padding-top: 18px;
+}
+body:not(.mobile) .header__desktop button.hf92j3dks8-btn1.pc1 {
+  margin-top: 6px;
+  align-self: flex-end;
+}
+
+/* Иконки аккаунта/корзины на жёлтой полосе — на одной линии с пунктами меню */
+body:not(.mobile) .header__row--03 .header-block-acc-cart {
+  align-items: center;
+  margin-top: 4px;
+}
+body:not(.mobile) .header__row--03 .header__acc-btn,
+body:not(.mobile) .header__row--03 .header__cart-btn {
+  display: inline-flex;
+  align-items: center;
+  transform: translateY(2px);
+}
+
 .header__cart-total .cart-total-counter {
   margin-left: 4px;
 }
