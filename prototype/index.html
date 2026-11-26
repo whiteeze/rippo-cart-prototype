@@ -51,55 +51,57 @@
             <ul class="cart__list">
               <li class="cart__item" data-line="1">
                 <div class="cart__item-image">
-                  <img class="thumb" src="media/prostavka.jpg" alt="Проставка RIPPO 30 мм" width="160" height="140" loading="eager" />
+                  <img src="media/prostavka.jpg" alt="Передние проставки RIPPO 30 мм" loading="eager" />
                 </div>
                 <div class="cart__item-desc">
-                  <span class="cart__item-id">Артикул RIP-TC-30</span>
-                  <a class="cart__item-title line-title" href="#">Проставки увеличения клиренса</a>
-                  <p class="cart__item-text">Toyota Camry XV70 · Толщина 30 мм</p>
+                  <span class="cart__item-id">Артикул: R-182</span>
+                  <a class="cart__item-title" href="#">Передние проставки для Toyota Camry IX (XV70)</a>
+                  <p class="cart__item-text">Толщина 30 мм · полиуретан · цена за комплект</p>
                 </div>
                 <div class="cart__item-price">
-                  <ins class="price line-sum">1 890 ₽</ins>
+                  <ins><span class="cart__item-price-current line-sum">1 890 ₽</span></ins>
                   <small>1 890 ₽ / комплект</small>
                 </div>
                 <div class="cart__item-number">
-                  <div class="qty" aria-label="Количество комплектов">
-                    <button type="button" data-qty="-1" aria-label="Уменьшить">−</button>
-                    <span class="qty-val">1</span>
-                    <button type="button" data-qty="1" aria-label="Увеличить">+</button>
+                  <div class="ui-number">
+                    <button type="button" class="ui-number__decrease" data-qty="-1" aria-label="Уменьшить">−</button>
+                    <input class="ui-number__input qty-val" type="text" value="1" readonly inputmode="numeric" aria-label="Количество" />
+                    <button type="button" class="ui-number__increase" data-qty="1" aria-label="Увеличить">+</button>
                   </div>
-                  <div class="hint">Кол-во = комплекты</div>
                 </div>
                 <div class="cart__item-action">
-                  <button class="cart__item-action-link link-danger" type="button" data-remove>Удалить</button>
+                  <button type="button" class="cart__item-action-toggle cart__item-action-remove-product" data-remove aria-label="Удалить" title="Удалить">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  </button>
                 </div>
               </li>
               <li class="cart__item" data-line="2">
                 <div class="cart__item-image">
-                  <img class="thumb" src="media/prostavka.jpg" alt="Проставка RIPPO 20 мм" width="160" height="140" loading="eager" />
+                  <img src="media/prostavka.jpg" alt="Задние проставки RIPPO 20 мм" loading="eager" />
                 </div>
                 <div class="cart__item-desc">
-                  <span class="cart__item-id">Артикул RIP-KS-20</span>
-                  <a class="cart__item-title line-title" href="#">Проставки увеличения клиренса</a>
-                  <p class="cart__item-text">Kia Sportage QL · Толщина 20 мм</p>
+                  <span class="cart__item-id">Артикул: R-226</span>
+                  <a class="cart__item-title" href="#">Задние проставки для Kia Sportage QL</a>
+                  <p class="cart__item-text">Толщина 20 мм · полиуретан · цена за комплект</p>
                 </div>
                 <div class="cart__item-price">
-                  <ins class="price line-sum">2 700 ₽</ins>
+                  <ins><span class="cart__item-price-current line-sum">2 700 ₽</span></ins>
                   <small>1 350 ₽ / комплект</small>
                 </div>
                 <div class="cart__item-number">
-                  <div class="qty">
-                    <button type="button" data-qty="-1">−</button>
-                    <span class="qty-val">2</span>
-                    <button type="button" data-qty="1">+</button>
+                  <div class="ui-number">
+                    <button type="button" class="ui-number__decrease" data-qty="-1" aria-label="Уменьшить">−</button>
+                    <input class="ui-number__input qty-val" type="text" value="2" readonly inputmode="numeric" aria-label="Количество" />
+                    <button type="button" class="ui-number__increase" data-qty="1" aria-label="Увеличить">+</button>
                   </div>
                 </div>
                 <div class="cart__item-action">
-                  <button class="cart__item-action-link link-danger" type="button" data-remove>Удалить</button>
+                  <button type="button" class="cart__item-action-toggle cart__item-action-remove-product" data-remove aria-label="Удалить" title="Удалить">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  </button>
                 </div>
               </li>
-            </ul>
-          </div>
+            
 
           <aside class="card summary" id="cart-summary">
             <h2>Итого</h2>
@@ -204,56 +206,59 @@
             <div class="checkout-step-body">
               <div class="cart cart--proto">
                 <ul class="cart__list">
-                  <li class="cart__item" data-line="1">
-                    <div class="cart__item-image">
-                      <img class="thumb" src="media/prostavka.jpg" alt="Проставка RIPPO 30 мм" width="160" height="140" loading="eager" />
-                    </div>
-                    <div class="cart__item-desc">
-                      <span class="cart__item-id">Артикул RIP-TC-30</span>
-                      <a class="cart__item-title line-title" href="#">Проставки увеличения клиренса</a>
-                      <p class="cart__item-text">Toyota Camry XV70 · Толщина 30 мм</p>
-                    </div>
-                    <div class="cart__item-price">
-                      <ins class="price line-sum">1 890 ₽</ins>
-                      <small>1 890 ₽ / комплект</small>
-                    </div>
-                    <div class="cart__item-number">
-                      <div class="qty">
-                        <button type="button" data-qty="-1">−</button>
-                        <span class="qty-val">1</span>
-                        <button type="button" data-qty="1">+</button>
-                      </div>
-                    </div>
-                    <div class="cart__item-action">
-                      <button class="cart__item-action-link link-danger" type="button" data-remove>Удалить</button>
-                    </div>
-                  </li>
-                  <li class="cart__item" data-line="2">
-                    <div class="cart__item-image">
-                      <img class="thumb" src="media/prostavka.jpg" alt="Проставка RIPPO 20 мм" width="160" height="140" loading="eager" />
-                    </div>
-                    <div class="cart__item-desc">
-                      <span class="cart__item-id">Артикул RIP-KS-20</span>
-                      <a class="cart__item-title line-title" href="#">Проставки увеличения клиренса</a>
-                      <p class="cart__item-text">Kia Sportage QL · Толщина 20 мм</p>
-                    </div>
-                    <div class="cart__item-price">
-                      <ins class="price line-sum">2 700 ₽</ins>
-                      <small>1 350 ₽ / комплект</small>
-                    </div>
-                    <div class="cart__item-number">
-                      <div class="qty">
-                        <button type="button" data-qty="-1">−</button>
-                        <span class="qty-val">2</span>
-                        <button type="button" data-qty="1">+</button>
-                      </div>
-                    </div>
-                    <div class="cart__item-action">
-                      <button class="cart__item-action-link link-danger" type="button" data-remove>Удалить</button>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+              <li class="cart__item" data-line="1">
+                <div class="cart__item-image">
+                  <img src="media/prostavka.jpg" alt="Передние проставки RIPPO 30 мм" loading="eager" />
+                </div>
+                <div class="cart__item-desc">
+                  <span class="cart__item-id">Артикул: R-182</span>
+                  <a class="cart__item-title" href="#">Передние проставки для Toyota Camry IX (XV70)</a>
+                  <p class="cart__item-text">Толщина 30 мм · полиуретан · цена за комплект</p>
+                </div>
+                <div class="cart__item-price">
+                  <ins><span class="cart__item-price-current line-sum">1 890 ₽</span></ins>
+                  <small>1 890 ₽ / комплект</small>
+                </div>
+                <div class="cart__item-number">
+                  <div class="ui-number">
+                    <button type="button" class="ui-number__decrease" data-qty="-1" aria-label="Уменьшить">−</button>
+                    <input class="ui-number__input qty-val" type="text" value="1" readonly inputmode="numeric" aria-label="Количество" />
+                    <button type="button" class="ui-number__increase" data-qty="1" aria-label="Увеличить">+</button>
+                  </div>
+                </div>
+                <div class="cart__item-action">
+                  <button type="button" class="cart__item-action-toggle cart__item-action-remove-product" data-remove aria-label="Удалить" title="Удалить">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  </button>
+                </div>
+              </li>
+              <li class="cart__item" data-line="2">
+                <div class="cart__item-image">
+                  <img src="media/prostavka.jpg" alt="Задние проставки RIPPO 20 мм" loading="eager" />
+                </div>
+                <div class="cart__item-desc">
+                  <span class="cart__item-id">Артикул: R-226</span>
+                  <a class="cart__item-title" href="#">Задние проставки для Kia Sportage QL</a>
+                  <p class="cart__item-text">Толщина 20 мм · полиуретан · цена за комплект</p>
+                </div>
+                <div class="cart__item-price">
+                  <ins><span class="cart__item-price-current line-sum">2 700 ₽</span></ins>
+                  <small>1 350 ₽ / комплект</small>
+                </div>
+                <div class="cart__item-number">
+                  <div class="ui-number">
+                    <button type="button" class="ui-number__decrease" data-qty="-1" aria-label="Уменьшить">−</button>
+                    <input class="ui-number__input qty-val" type="text" value="2" readonly inputmode="numeric" aria-label="Количество" />
+                    <button type="button" class="ui-number__increase" data-qty="1" aria-label="Увеличить">+</button>
+                  </div>
+                </div>
+                <div class="cart__item-action">
+                  <button type="button" class="cart__item-action-toggle cart__item-action-remove-product" data-remove aria-label="Удалить" title="Удалить">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  </button>
+                </div>
+              </li>
+            
             </div>
           </div>
 

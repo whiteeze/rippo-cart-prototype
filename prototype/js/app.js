@@ -77,7 +77,10 @@
       if (!line) return;
       const qtyEl = el.querySelector('.qty-val');
       const sumEl = el.querySelector('.line-sum');
-      if (qtyEl) qtyEl.textContent = String(line.qty);
+      if (qtyEl) {
+        if (qtyEl.tagName === 'INPUT') qtyEl.value = String(line.qty);
+        else qtyEl.textContent = String(line.qty);
+      }
       if (sumEl) sumEl.textContent = money(line.unit * line.qty);
     });
 
