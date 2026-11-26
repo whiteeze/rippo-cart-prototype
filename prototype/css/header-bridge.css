@@ -243,6 +243,27 @@ body.mobile .sticky-header-block svg {
   margin: 0 auto;
   fill: currentColor;
 }
+body.mobile .sticky-header-block svg.icon-catalog--bars {
+  fill: none;
+  stroke: currentColor;
+}
+
+/* Desktop «Каталоги» — три полоски как на rippo.ru */
+.header__catalog-btn .icon-catalog--bars {
+  display: inline-block;
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  fill: none;
+  stroke: currentColor;
+  flex-shrink: 0;
+}
+.header__catalog-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
 
 body.mobile .menu-nav__icon-svg {
   width: 22px;
