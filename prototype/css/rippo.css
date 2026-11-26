@@ -129,46 +129,74 @@ html.dadata-live .suggest-list { display: none !important; }
 }
 .frame-desktop { max-width: 1200px; margin: 0 auto 40px; }
 
-/* —— Site header —— */
+/* —— Site header (как rippo.ru) —— */
 .site-header { background: var(--white); }
 .header-top {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 16px; padding: 12px 20px; max-width: 1160px; margin: 0 auto;
+  display: flex; align-items: center; gap: 16px;
+  padding: 10px 20px; max-width: 1200px; margin: 0 auto;
 }
-.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
-.logo-img { height: 40px; width: auto; display: block; }
-.logo-mark {
-  width: 40px; height: 40px; background: var(--yellow); border-radius: 8px;
-  display: grid; place-items: center; font-weight: 800; font-size: 20px;
+.logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+.logo-img { height: 56px; width: auto; display: block; }
+.logo-tagline {
+  font-size: 13px; font-weight: 600; line-height: 1.25; color: #111;
+  margin-right: auto; max-width: 150px;
 }
-.logo-text { padding-top: 4px; }
-.logo-text b { display: block; font-size: 20px; letter-spacing: .02em; line-height: 1.1; }
-.logo-text span { font-size: 10px; color: var(--muted); line-height: 1.2; }
-.header-contacts { text-align: right; font-size: 13px; }
-.header-contacts a { font-weight: 700; text-decoration: none; }
+.header-call {
+  display: flex; align-items: center; gap: 10px;
+}
+.header-phone-icon {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--yellow); display: grid; place-items: center; flex-shrink: 0;
+}
+.header-phones { display: grid; gap: 2px; }
+.header-phones a {
+  font-weight: 700; font-size: 15px; text-decoration: none; white-space: nowrap;
+}
+.header-actions { text-align: center; }
+.header-hours { font-size: 12px; margin-top: 4px; color: #111; }
 .btn-call {
   background: var(--green); color: #fff; border: 0; border-radius: 5px;
-  padding: 12px 16px; font-family: var(--font-ui); font-weight: 600; font-size: 15px;
+  padding: 12px 18px; font-family: var(--font-ui); font-weight: 600; font-size: 15px;
   cursor: pointer; white-space: nowrap;
 }
 .nav {
   background: var(--yellow);
-  display: flex; align-items: center; gap: 8px;
-  padding: 0 16px; min-height: 48px;
+  min-height: 48px;
 }
 .nav-inner {
-  max-width: 1160px; margin: 0 auto; width: 100%;
-  display: flex; align-items: center; gap: 8px;
+  max-width: 1200px; margin: 0 auto; width: 100%;
+  display: flex; align-items: center; gap: 4px;
+  padding: 0 16px; min-height: 48px;
 }
-.nav a { text-decoration: none; font-size: 13px; font-weight: 600; padding: 8px; color: #000; }
+.nav a {
+  text-decoration: none; font-size: 13px; font-weight: 600;
+  padding: 8px 10px; color: #000; white-space: nowrap;
+}
+.nav-catalog {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: transparent; border: 0; font: inherit; font-weight: 700;
+  font-size: 14px; padding: 8px 12px; cursor: pointer; color: #000;
+}
+.nav-catalog::before {
+  content: ""; width: 16px; height: 12px;
+  background:
+    linear-gradient(#000,#000) 0 0/100% 2px no-repeat,
+    linear-gradient(#000,#000) 0 5px/100% 2px no-repeat,
+    linear-gradient(#000,#000) 0 10px/100% 2px no-repeat;
+}
+.nav-acc {
+  background: transparent; border: 0; padding: 6px; cursor: pointer;
+  display: grid; place-items: center; color: #000;
+}
 .nav-spacer { flex: 1; }
-/* Как кнопка «Корзина» в шапке сайта: жёлтый фон + чёрная обводка */
 .cart-btn {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--yellow); border: 1px solid #000; border-radius: 5px;
   padding: 8px 12px; font-weight: 600; cursor: pointer; color: #000;
+  position: relative;
 }
 .cart-badge {
+  position: absolute; top: -6px; right: -6px;
   background: #000; color: var(--yellow);
   font-size: 11px; min-width: 18px; height: 18px; border-radius: 99px;
   display: grid; place-items: center; padding: 0 5px;
@@ -193,22 +221,24 @@ html.dadata-live .suggest-list { display: none !important; }
 
 /* —— Cart line —— */
 .line {
-  display: grid; grid-template-columns: 88px 1fr auto; gap: 16px;
+  display: grid; grid-template-columns: 96px 1fr auto; gap: 16px;
   padding: 16px 0; border-bottom: 1px solid var(--line);
 }
 .line:last-child { border-bottom: 0; }
 .thumb {
-  width: 88px;
-  max-width: 88px;
-  height: 88px;
+  width: 96px;
+  max-width: 96px;
+  height: 96px;
   aspect-ratio: 1;
   border-radius: 8px;
   object-fit: cover;
-  background: #f0f0f4;
+  object-position: center;
+  background: #f3f3f6;
   display: block;
   box-sizing: border-box;
   border: 1px solid var(--line);
 }
+img.thumb { padding: 0; color: transparent; font-size: 0; }
 .line > div:not(.thumb):not(.price-col) {
   min-width: 0;
   overflow-wrap: anywhere;
@@ -465,19 +495,23 @@ html.dadata-live .suggest-list { display: none !important; }
   color: #1b5e20;
 }
 .mobile .mobile-only-note { display: block; }
-.mobile .header-contacts, .mobile .btn-call, .mobile .nav a:not(.keep) { display: none; }
+.mobile .logo-tagline,
+.mobile .header-call,
+.mobile .header-actions,
+.mobile .nav a:not(.keep) { display: none; }
+.mobile .header-top { padding: 8px 12px; }
+.mobile .logo-img { height: 44px; }
 .mobile .line {
-  grid-template-columns: 64px minmax(0, 1fr);
+  grid-template-columns: 72px minmax(0, 1fr);
   gap: 12px;
   align-items: start;
 }
 .mobile .line .thumb {
-  width: 64px;
-  max-width: 64px;
-  height: 64px;
-  min-height: 64px;
-  font-size: 10px;
-  padding: 6px;
+  width: 72px;
+  max-width: 72px;
+  height: 72px;
+  min-height: 72px;
+  padding: 0;
 }
 .mobile .line .price-col {
   grid-column: 2;

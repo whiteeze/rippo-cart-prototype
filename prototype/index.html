@@ -32,32 +32,44 @@
   </div>
 
   <div id="app-frame" class="frame-desktop">
-    <!-- HEADER -->
+    <!-- HEADER — как на rippo.ru -->
     <header class="site-header">
       <div class="header-top">
         <a class="logo" href="#" data-go="cart">
-          <img class="logo-img" src="https://rippo.ru/media/u8gkD32uOsZHUl8zizG7S00QDw04KI-metabG9nby5zdmc=-.svg" alt="RIPPO" width="120" height="40" />
-          <div class="logo-text">
-            <span>Проставки для увеличения клиренса</span>
-          </div>
+          <img class="logo-img" src="media/logo.svg" alt="RIPPO" width="140" height="60" />
         </a>
-        <div class="header-contacts">
-          <div><a href="tel:+79391136236">+7 (939) 113-62-36</a></div>
-          <div class="muted">Ежедневно 8:00–21:00 МСК</div>
+        <div class="logo-tagline">Проставки<br />для увеличения клиренса</div>
+        <div class="header-call">
+          <span class="header-phone-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6"><path d="M18.1 14.7L14 15.5C11.2 14.1 9.5 12.5 8.5 10L9.3 5.9L7.8 2H4.1C2.9 2 2 2.9 2.2 4C2.6 6.8 3.9 11.9 7.5 15.5C11.3 19.3 16.8 21 19.8 21.6C21 21.9 22 21 22 19.8V16.2L18.1 14.7Z"/></svg>
+          </span>
+          <div class="header-phones">
+            <a href="tel:+79391136236">+7 (939) 113-62-36</a>
+            <a href="tel:+79391136223">+7 (939) 113-62-23</a>
+          </div>
         </div>
-        <button class="btn-call" type="button">Заказать звонок</button>
+        <div class="header-actions">
+          <button class="btn-call" type="button">Заказать звонок</button>
+          <div class="header-hours">Ежедневно с 8:00 до 21:00 МСК</div>
+        </div>
       </div>
       <nav class="nav">
         <div class="nav-inner">
-          <a href="#" class="keep">Каталоги</a>
+          <button class="nav-catalog keep" type="button">Каталоги</button>
           <a href="#">О компании</a>
+          <a href="#">Отзывы</a>
           <a href="#">Оплата и доставка</a>
+          <a href="#">Контакты</a>
+          <a href="#">Вопрос - ответ</a>
+          <a href="#">Установка</a>
           <span class="nav-spacer"></span>
-          <a href="#" class="keep">Кабинет</a>
+          <button class="nav-acc keep" type="button" aria-label="Личный кабинет" title="Личный кабинет">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7.5" r="3.5"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg>
+          </button>
           <button class="cart-btn" type="button" id="open-drawer">
             <span>Корзина</span>
-            <span class="cart-badge" id="cart-count">2</span>
             <span id="cart-sum-head">4 590 ₽</span>
+            <span class="cart-badge" id="cart-count">2</span>
           </button>
         </div>
       </nav>
@@ -71,7 +83,7 @@
         <div class="grid-checkout">
           <div class="card">
             <div class="line" data-line="1">
-              <img class="thumb" src="https://rippo.ru/media/prostavka.jpg" alt="Проставка RIPPO 30 мм" width="88" height="88" />
+              <img class="thumb" src="media/prostavka.jpg" alt="Проставка RIPPO 30 мм" width="96" height="96" loading="eager" />
               <div>
                 <p class="line-title">Проставки увеличения клиренса</p>
                 <div class="line-meta">Toyota Camry XV70 · Артикул RIP-TC-30 · Толщина 30 мм</div>
@@ -87,7 +99,7 @@
               <div class="price-col"><div class="price line-sum">1 890 ₽</div></div>
             </div>
             <div class="line" data-line="2">
-              <img class="thumb" src="https://rippo.ru/media/prostavka.jpg" alt="Проставка RIPPO 20 мм" width="88" height="88" />
+              <img class="thumb" src="media/prostavka.jpg" alt="Проставка RIPPO 20 мм" width="96" height="96" loading="eager" />
               <div>
                 <p class="line-title">Проставки увеличения клиренса</p>
                 <div class="line-meta">Kia Sportage QL · Артикул RIP-KS-20 · Толщина 20 мм</div>
@@ -140,7 +152,7 @@
 
         <div class="card" style="padding:12px">
           <div class="line drawer-line" data-line="1">
-            <img class="thumb" src="https://rippo.ru/media/prostavka.jpg" alt="Проставка 30 мм" width="64" height="64" />
+            <img class="thumb" src="media/prostavka.jpg" alt="Проставка 30 мм" width="64" height="64" />
             <div>
               <p class="line-title">Camry · 30 мм</p>
               <div class="line-meta">1 890 ₽ за комплект</div>
@@ -153,7 +165,7 @@
             </div>
           </div>
           <div class="line drawer-line" data-line="2">
-            <img class="thumb" src="https://rippo.ru/media/prostavka.jpg" alt="Проставка 20 мм" width="64" height="64" />
+            <img class="thumb" src="media/prostavka.jpg" alt="Проставка 20 мм" width="64" height="64" />
             <div>
               <p class="line-title">Sportage · 20 мм</p>
               <div class="line-meta">1 350 ₽ за комплект</div>
@@ -215,7 +227,7 @@
             <h2>Ваши товары</h2>
             <div class="checkout-step-body">
               <div class="line checkout-product" data-line="1">
-                <img class="thumb" src="https://rippo.ru/media/prostavka.jpg" alt="Проставка RIPPO 30 мм" width="88" height="88" />
+                <img class="thumb" src="media/prostavka.jpg" alt="Проставка RIPPO 30 мм" width="96" height="96" loading="eager" />
                 <div>
                   <p class="line-title">Проставки увеличения клиренса</p>
                   <div class="line-meta">Toyota Camry XV70 · RIP-TC-30 · 30 мм</div>
@@ -228,7 +240,7 @@
                 <div class="price-col"><div class="price line-sum">1 890 ₽</div></div>
               </div>
               <div class="line checkout-product" data-line="2">
-                <img class="thumb" src="https://rippo.ru/media/prostavka.jpg" alt="Проставка RIPPO 20 мм" width="88" height="88" />
+                <img class="thumb" src="media/prostavka.jpg" alt="Проставка RIPPO 20 мм" width="96" height="96" loading="eager" />
                 <div>
                   <p class="line-title">Проставки увеличения клиренса</p>
                   <div class="line-meta">Kia Sportage QL · RIP-KS-20 · 20 мм</div>
@@ -334,21 +346,21 @@
                 <label class="delivery-radio" data-delivery="post">
                   <input type="radio" name="delivery" value="post" />
                   <span class="delivery-check"></span>
-                  <img class="delivery-logo" src="https://rippo.ru/media/pochtacheckout.png" alt="Почта России" width="50" height="24" />
+                  <img class="delivery-logo" src="media/pochtacheckout.png" alt="Почта России" width="50" height="24" />
                   <span class="delivery-label">Доставка почтой России</span>
                   <span class="delivery-price" id="price-post">420 ₽</span>
                 </label>
                 <label class="delivery-radio" data-delivery="courier">
                   <input type="radio" name="delivery" value="courier" />
                   <span class="delivery-check"></span>
-                  <img class="delivery-logo" src="https://rippo.ru/media/cdek.png" alt="СДЭК" width="50" height="15" />
+                  <img class="delivery-logo" src="media/cdek.png" alt="СДЭК" width="50" height="15" />
                   <span class="delivery-label">Доставка до двери <span class="muted">3–6 дн.</span></span>
                   <span class="delivery-price" id="price-courier">490 ₽</span>
                 </label>
                 <label class="delivery-radio selected" data-delivery="pvz">
                   <input type="radio" name="delivery" value="pvz" checked />
                   <span class="delivery-check"></span>
-                  <img class="delivery-logo" src="https://rippo.ru/media/cdek.png" alt="СДЭК" width="50" height="15" />
+                  <img class="delivery-logo" src="media/cdek.png" alt="СДЭК" width="50" height="15" />
                   <span class="delivery-label">Доставка до ПВЗ СДЭК <span class="muted">3–5 дн.</span></span>
                   <span class="delivery-price" id="price-pvz">350 ₽</span>
                 </label>
@@ -597,7 +609,7 @@ Bottom sheet для мини-корзины (85vh)
     </div>
     <div class="drawer-body">
       <div class="line drawer-line" data-line="1">
-        <img class="thumb" src="https://rippo.ru/media/prostavka.jpg" alt="Проставка 30 мм" width="64" height="64" />
+        <img class="thumb" src="media/prostavka.jpg" alt="Проставка 30 мм" width="64" height="64" />
         <div>
           <div class="line-title">Camry · 30 мм</div>
           <div class="line-meta">1 890 ₽ за комплект</div>
@@ -610,7 +622,7 @@ Bottom sheet для мини-корзины (85vh)
         </div>
       </div>
       <div class="line drawer-line" data-line="2">
-        <img class="thumb" src="https://rippo.ru/media/prostavka.jpg" alt="Проставка 20 мм" width="64" height="64" />
+        <img class="thumb" src="media/prostavka.jpg" alt="Проставка 20 мм" width="64" height="64" />
         <div>
           <div class="line-title">Sportage · 20 мм</div>
           <div class="line-meta">1 350 ₽ за комплект</div>
