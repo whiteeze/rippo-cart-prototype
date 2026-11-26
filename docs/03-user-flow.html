@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Схема сценария — RIPPO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });
+  </script>
+  <style>
+    body { font-family: Montserrat, sans-serif; margin: 0; background: #F7F7FB; color: #1a1a1a; }
+    .page { max-width: 980px; margin: 0 auto; padding: 28px 20px 48px; }
+    h1 { font-size: 24px; }
+    .lead { color: #666; }
+    .box { background: #fff; border: 1px solid #e4e4ea; border-radius: 12px; padding: 20px; overflow-x: auto; margin: 16px 0 28px; }
+    h2 { font-size: 16px; margin-top: 8px; }
+    ul { font-size: 14px; line-height: 1.5; }
+    .legend span { display: inline-block; margin-right: 14px; font-size: 13px; }
+    .d { width: 10px; height: 10px; display: inline-block; border-radius: 2px; margin-right: 4px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a href="../index.html">← К комплекту</a>
+    <h1>Схема сценария покупки</h1>
+    <p class="lead">От добавления товара до создания заказа и оплаты. Включает возвраты и ошибки.</p>
+    <p class="legend">
+      <span><i class="d" style="background:#FDEF39"></i> основной путь</span>
+      <span><i class="d" style="background:#ffcdd2"></i> ошибка / альтернатива</span>
+      <span><i class="d" style="background:#c8e6c9"></i> успех</span>
+    </p>
+
+    <div class="box">
+      <pre class="mermaid">
+flowchart TD
+  A[Карточка товара] -->|В корзину| B[Мини-корзина в шапке]
+  A -->|Быстрый заказ| Q[Модалка заявки]
+  Q --> Q1[Заявка отправлена<br/>не оплаченный заказ]
+  Q1 -->|Оформить самостоятельно| C
+  B -->|Изменить кол-во / удалить| B
+  B -->|Оформить / Перейти в корзину| C[Страница корзины]
+  C -->|Промокод| C1{Проверка кода}
+  C1 -->|OK| C
+  C1 -->|ошибка| C2[Сообщение у поля]
+  C -->|Оформить заказ| D[Оформление: контакты]
+  D --> E[Адрес / населённый пункт]
+  E --> F{Расчёт доставки}
+  F -->|считаем| F1[Индикатор ожидания]
+  F1 --> F
+  F -->|OK| G[Выбор: ПВЗ / курьер / Почта]
+  F -->|недоступно / адрес / сервис| F2[Пояснение + альтернатива / повтор]
+  F2 --> E
+  G --> H[Способ оплаты]
+  H -->|карта / СБП| H1[Предоплата]
+  H -->|при получении если доступно| H2[Сейчас + при получении]
+  H1 --> I[Сводка и подтверждение]
+  H2 --> I
+  I -->|Оформить заказ| J[Заказ обрабатывается]
+  J -->|создан| K{Нужна оплата сейчас?}
+  K -->|да| L[Переход к оплате ТБанк]
+  K -->|нет COD| M[Заказ создан]
+  L -->|успех| M
+  L -->|не завершён / не прошёл| N[Продолжить оплату<br/>без нового заказа]
+  N --> L
+  J -->|техошибка| O[Повторная попытка]
+  O --> J
+  style A fill:#FDEF39
+  style M fill:#c8e6c9
+  style Q1 fill:#fff9c4
+  style F2 fill:#ffcdd2
+  style N fill:#ffcdd2
+  style O fill:#ffcdd2
+      </pre>
+    </div>
+
+    <h2>Ключевые возвраты</h2>
+    <ul>
+      <li>Из оформления → корзина: данные формы сохраняются в сессии/черновике.</li>
+      <li>Смена состава / адреса → сброс актуальности расчёта доставки (не принимать старую цену).</li>
+      <li>Неуспешная оплата → экран «заказ уже создан, оплатите» + кнопка повтора платежа.</li>
+      <li>Пустая корзина → CTA в каталог, оформление недоступно.</li>
+    </ul>
+  </div>
+</body>
+</html>

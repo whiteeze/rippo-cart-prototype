@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Согласованные правила — RIPPO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: Montserrat, sans-serif; margin: 0; background: #F7F7FB; color: #1a1a1a; }
+    .page { max-width: 860px; margin: 0 auto; padding: 28px 20px 48px; }
+    h1 { font-size: 24px; }
+    h2 { font-size: 15px; background: #FDEF39; display: inline-block; padding: 4px 10px; margin: 22px 0 10px; }
+    table { width: 100%; border-collapse: collapse; background: #fff; font-size: 13px; }
+    th, td { border: 1px solid #e4e4ea; padding: 9px 10px; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .ex { background: #fff; border: 1px solid #e4e4ea; border-radius: 10px; padding: 14px 16px; font-size: 13px; margin: 10px 0; }
+    .ok { color: #2E7D32; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a href="../index.html">← К комплекту</a>
+    <h1>Согласованные правила (по ответам заказчика)</h1>
+    <p style="color:#666;font-size:14px">Источник: Google Sheet от заказчика. Прототип и таблицы обновлены под эти правила.</p>
+
+    <h2>Доставка и суммы</h2>
+    <table>
+      <tr><th>Правило</th><th>Как показываем</th></tr>
+      <tr><td>«Бесплатная доставка до ТК/Почты»</td><td class="ok">Только на странице «Оплата и доставка». В корзине/итоге — фактическая стоимость способа.</td></tr>
+      <tr><td>Стоимость доставки</td><td>В корзине/оформлении по выбранному способу. Почта РФ — фиксированная.</td></tr>
+      <tr><td>Доставка оплачивается</td><td class="ok">Всегда сразу (для всех способов).</td></tr>
+      <tr><td>Порядок в форме</td><td class="ok">Сначала способ доставки → затем адрес/ПВЗ. Для ПВЗ домашний адрес не нужен.</td></tr>
+      <tr><td>95% заказов</td><td>СДЭК ПВЗ — приоритетный сценарий в UI.</td></tr>
+    </table>
+
+    <h2>Оплата</h2>
+    <table>
+      <tr><th>Способ</th><th>Правило</th></tr>
+      <tr><td>Онлайн</td><td>Один пункт «Онлайн-оплата» → после «Оформить заказ» редирект на <code>pay.linksecurepayment.com</code> (карта/СБП на стороне шлюза).</td></tr>
+      <tr><td>COD предоплата доставки</td><td>После оформления также переход на <code>pay.linksecurepayment.com</code> для оплаты доставки.</td></tr>
+      <tr><td>При получении</td><td>Только СДЭК (наложенный платёж), без лимита суммы.</td></tr>
+      <tr><td>COD: сейчас</td><td>Стоимость доставки.</td></tr>
+      <tr><td>COD: при получении</td><td>Стоимость проставок + комиссия 3%.</td></tr>
+      <tr><td>Комиссия COD</td><td class="ok">3% от стоимости заказа без доставки. Обязательна в итоге (раньше не было).</td></tr>
+      <tr><td>Почта России</td><td>100% предоплата товара + доставки. Интеграции расчёта нет.</td></tr>
+      <tr><td>ПВЗ без COD</td><td>СДЭК может вернуть: в ПВЗ нельзя наложенный платёж → другой ПВЗ или онлайн.</td></tr>
+    </table>
+
+    <div class="ex">
+      <strong>Пример</strong> (товар 4 590 ₽, СДЭК ПВЗ 350 ₽, оплата при получении):<br />
+      Комиссия 3% = 138 ₽<br />
+      Оплатить сейчас: <b>350 ₽</b> (доставка)<br />
+      Оплатить при получении: <b>4 728 ₽</b> (4 590 + 138)<br />
+      Общая стоимость: <b>5 078 ₽</b>
+    </div>
+
+    <h2>Скидки и промокод</h2>
+    <table>
+      <tr><td>Промокод</td><td class="ok">Не применяем на сайте — блок убран из прототипа.</td></tr>
+      <tr><td>Скидки</td><td>Применять общую скидку сайта (не персональную приоритетнее).</td></tr>
+    </table>
+
+    <h2>Поля</h2>
+    <table>
+      <tr><th>Сценарий</th><th>Обязательные данные</th></tr>
+      <tr><td>Кто оформляет</td><td><strong>Только авторизованный покупатель.</strong> Гостевого оформления нет.</td></tr>
+      <tr><td>Оформление</td><td>ФИО и телефон из профиля (можно изменить). Заказ связывается с телефоном.</td></tr>
+      <tr><td>СДЭК ПВЗ</td><td>ФИО, телефон, адрес ПВЗ (выбор из предложенных).</td></tr>
+      <tr><td>СДЭК курьер</td><td>ФИО, телефон, полный адрес доставки.</td></tr>
+      <tr><td>Почта РФ</td><td>ФИО, телефон, индекс, полный адрес.</td></tr>
+      <tr><td>Сохранённые адреса</td><td>Нет.</td></tr>
+      <tr><td>Быстрый заказ</td><td>Имя, телефон; текст вопроса необязателен. Это заявка менеджеру.</td></tr>
+      <tr><td>Вход / регистрация</td><td>Ник, телефон. Без входа оформление заказа недоступно.</td></tr>
+    </table>
+  </div>
+</body>
+</html>

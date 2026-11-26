@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UX-отчёт — корзина RIPPO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    @page { size: A4; margin: 16mm; }
+    body { font-family: Montserrat, sans-serif; color: #1a1a1a; margin: 0; background: #fff; }
+    .page { max-width: 820px; margin: 0 auto; padding: 28px 24px 40px; }
+    .meta { font-size: 12px; color: #666; margin-bottom: 8px; }
+    h1 { font-size: 22px; margin: 0 0 6px; }
+    .sub { color: #666; font-size: 13px; margin-bottom: 22px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { border: 1px solid #ddd; padding: 10px 12px; vertical-align: top; text-align: left; }
+    th { background: #FDEF39; font-size: 12px; }
+    .p { display: inline-block; font-weight: 800; background: #1a1a1a; color: #FDEF39; width: 22px; height: 22px; line-height: 22px; text-align: center; border-radius: 4px; font-size: 12px; }
+    .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+    .obs { background: #e8f5e9; color: #1b5e20; }
+    .hyp { background: #fff3e0; color: #e65100; }
+    .note { margin-top: 18px; font-size: 12px; color: #555; border-top: 1px solid #eee; padding-top: 12px; }
+    .back { font-size: 13px; margin-bottom: 16px; }
+    @media print { .back { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a class="back" href="../index.html">← К комплекту</a>
+    <div class="meta">RIPPO.ru · Краткий UX-отчёт · 1 страница · для согласования логики</div>
+    <h1>Корзина и оформление заказа: ключевые проблемы</h1>
+    <p class="sub">Наблюдения — по текущему сайту и публичным правилам. Гипотезы — отдельно, требуют проверки аналитикой/интервью.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:48px">Приоритет</th>
+          <th>Проблема</th>
+          <th>Тип</th>
+          <th>Предлагаемое решение</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="p">P1</span></td>
+          <td><strong>Неясно, сколько платить сейчас и сколько при получении.</strong> На сайте одновременно заявлены «оплата при получении», бесплатная доставка до ТК/Почты и тарифы СДЭК при оформлении. Покупатель не видит единого понятного итога до подтверждения.</td>
+          <td><span class="tag obs">наблюдение</span></td>
+          <td>В сводке заказа всегда три явные строки при COD: «Оплатить сейчас», «Оплатить при получении», «Общая стоимость». Неизвестную доставку не показывать как 0 ₽ / «бесплатно» в итоге.</td>
+        </tr>
+        <tr>
+          <td><span class="p">P1</span></td>
+          <td><strong>Ошибки и пересчёт доставки не объяснены.</strong> ТЗ фиксирует сбои расчёта СДЭК/Почты; текущий UX не показывает понятные состояния «считаем / недоступно / сервис не отвечает».</td>
+          <td><span class="tag obs">наблюдение + ТЗ</span></td>
+          <td>Отдельные состояния доставки с текстом и действием (исправить адрес / повторить / выбрать альтернативу). Старый расчёт инвалидировать при смене адреса или состава.</td>
+        </tr>
+        <tr>
+          <td><span class="p">P2</span></td>
+          <td><strong>Мини-корзина в шапке показывает только сумму «0 ₽».</strong> Количество позиций и состав скрыты до открытия панели; пустое состояние есть, но путь «посмотреть → изменить → оформить» неочевиден на мобильном.</td>
+          <td><span class="tag obs">наблюдение</span></td>
+          <td>В шапке: бейдж количества + сумма со скидкой. В панели: позиции, −/+, удаление, CTA «Оформить заказ». Суммы шапка = панель = страница корзины = оформление.</td>
+        </tr>
+        <tr>
+          <td><span class="p">P2</span></td>
+          <td><strong>«Комплект» легко спутать с «штуками проставок».</strong> Товар продаётся комплектом; без явной подписи количество воспринимается как отдельные проставки.</td>
+          <td><span class="tag hyp">гипотеза</span> (подтвердить на карточках/корзине)</td>
+          <td>Везде подпись «N комплект(ов)», цена «за комплект», в строке позиции — «стоимость комплектов».</td>
+        </tr>
+        <tr>
+          <td><span class="p">P3</span></td>
+          <td><strong>«Быстрый заказ» может выглядеть как полноценная покупка.</strong> Если фактически уходит заявка, покупатель ожидает оплату/трек — растёт нагрузка на поддержку.</td>
+          <td><span class="tag hyp">гипотеза</span></td>
+          <td>Явный текст: «Заявка менеджеру. Это не оплаченный заказ». Связь с основным оформлением: кнопка «Оформить самостоятельно».</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <strong>Вне скоупа исполнителя:</strong> диагностика API СДЭК/Почты/ТБанка, правка CMS, коммерческие правила скидок. Персональная скидка авторизованного покупателя имеет приоритет над общей (текущее правило сохраняем). Совместимость промокода с скидками — на согласование (см. вопросы).
+      <br /><br />
+      <strong>Рекомендация по форме:</strong> один экран с последовательными блоками (получатель → способ доставки → адрес → оплата → сводка). Оформление только для авторизованного покупателя (гостя нет). Закреплённая сводка справа (desktop) / снизу (mobile) держит итог в фокусе.
+    </div>
+  </div>
+</body>
+</html>

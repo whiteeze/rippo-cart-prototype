@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RIPPO — комплект UX корзины и оформления</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --yellow: #FDEF39;
+      --bg: #F7F7FB;
+      --text: #1A1A1A;
+      --muted: #6B6B76;
+      --line: #E4E4EA;
+      --green: #2F9E44;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Montserrat, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .top {
+      background: var(--yellow);
+      padding: 18px 24px;
+      border-bottom: 1px solid #e6d83a;
+    }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 64px; }
+    h1 { font-size: 28px; margin: 0 0 8px; }
+    .lead { color: var(--muted); margin: 0 0 28px; max-width: 62ch; }
+    .grid { display: grid; gap: 12px; }
+    a.card {
+      display: block;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px 20px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    a.card:hover { border-color: #cfcf00; box-shadow: 0 6px 20px rgba(0,0,0,.06); }
+    a.card strong { display: block; font-size: 16px; margin-bottom: 4px; }
+    a.card span { color: var(--muted); font-size: 14px; }
+    .badge {
+      display: inline-block;
+      background: var(--yellow);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      background: var(--text);
+      color: var(--yellow);
+      padding: 14px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .note {
+      margin-top: 28px;
+      padding: 16px 18px;
+      background: #fff8c8;
+      border-left: 4px solid var(--yellow);
+      border-radius: 8px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top"><strong>RIPPO</strong> · UX-комплект корзины и оформления заказа</div>
+  <div class="wrap">
+    <div class="badge">Сдача по ТЗ · без внедрения на сайт</div>
+    <h1>Корзина и оформление заказа</h1>
+    <p class="lead">Полный комплект: UX-отчёт, схема сценария, вопросы, описание поведения, таблицы, сценарии приёмки, дизайн-спеки и кликабельный прототип desktop/mobile в стиле RIPPO.</p>
+
+    <div class="grid">
+      <a class="card" href="docs/01-ux-report.html"><strong>01. UX-отчёт</strong><span>3–5 ключевых проблем, приоритет, решения. Гипотезы отдельно от наблюдений.</span></a>
+      <a class="card" href="docs/02-questions.html"><strong>02. Вопросы заказчику</strong><span>Коммерческие и технические вопросы, без которых нельзя финализировать суммы и поля.</span></a>
+      <a class="card" href="docs/03-user-flow.html"><strong>03. Схема сценария</strong><span>Путь от добавления товара до оплаты, включая ошибки и возвраты.</span></a>
+      <a class="card" href="prototype/index.html"><strong>04. Прототип и макеты</strong><span>Кликабельный прототип: корзина, оформление, ПВЗ, курьер, оплата при получении, ошибки.</span></a>
+      <a class="card" href="docs/04-behavior.html"><strong>05. Описание поведения</strong><span>Действие → экран → ожидание / успех / ошибка.</span></a>
+      <a class="card" href="docs/05-fields-table.html"><strong>06. Таблица полей и текстов</strong><span>Названия, подсказки, обязательность, ошибки, кнопки.</span></a>
+      <a class="card" href="docs/06-acceptance.html"><strong>07. Сценарии приёмки</strong><span>Действие покупателя и ожидаемый результат.</span></a>
+      <a class="card" href="docs/07-design-specs.html"><strong>08. Материалы для реализации</strong><span>Цвета, шрифты, отступы, состояния, адаптив, иконки.</span></a>
+      <a class="card" href="docs/08-agreed-rules.html"><strong>09. Согласованные правила</strong><span>Ответы заказчика: COD 3%, доставка, поля, без промокода.</span></a>
+      <a class="card" href="docs/09-cms-plugins.html"><strong>10. CMS-плагины адреса</strong><span>DaData Suggestions + виджет ПВЗ СДЭК для внедрения.</span></a>
+    </div>
+
+    <a class="cta" href="prototype/index.html">Открыть кликабельный прототип →</a>
+
+    <div class="note">
+      <strong>Важно для сдачи заказчику:</strong> сначала согласуйте логику по отчёту и вопросам (этап 1 из ТЗ). Затем передайте прототип и таблицы. На основной сайт ничего не устанавливаем — внедрение на стороне заказчика.
+    </div>
+  </div>
+</body>
+</html>

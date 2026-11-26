@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Дизайн-спеки — RIPPO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: Montserrat, sans-serif; margin: 0; background: #F7F7FB; color: #1a1a1a; }
+    .page { max-width: 900px; margin: 0 auto; padding: 28px 20px 48px; }
+    h1 { font-size: 24px; }
+    h2 { font-size: 15px; margin-top: 28px; }
+    .swatches { display: flex; flex-wrap: wrap; gap: 12px; }
+    .sw { width: 120px; border-radius: 10px; overflow: hidden; border: 1px solid #e4e4ea; background: #fff; font-size: 11px; }
+    .sw i { display: block; height: 48px; }
+    .sw b { display: block; padding: 8px; }
+    table { width: 100%; border-collapse: collapse; background: #fff; font-size: 13px; }
+    th, td { border: 1px solid #e4e4ea; padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #FDEF39; }
+    .box { background: #fff; border: 1px solid #e4e4ea; border-radius: 12px; padding: 16px; margin: 12px 0; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a href="../index.html">← К комплекту</a>
+    <h1>Материалы для реализации</h1>
+
+    <h2>Цвета</h2>
+    <div class="swatches">
+      <div class="sw"><i style="background:#FDEF39"></i><b>Primary Yellow<br>#FDEF39</b></div>
+      <div class="sw"><i style="background:#1A1A1A"></i><b>Text / Dark CTA<br>#1A1A1A</b></div>
+      <div class="sw"><i style="background:#F7F7FB"></i><b>Page BG<br>#F7F7FB</b></div>
+      <div class="sw"><i style="background:#FFFFFF"></i><b>Surface<br>#FFFFFF</b></div>
+      <div class="sw"><i style="background:#2F9E44"></i><b>Green phone CTA<br>#2F9E44</b></div>
+      <div class="sw"><i style="background:#D32F2F"></i><b>Error<br>#D32F2F</b></div>
+      <div class="sw"><i style="background:#6B6B76"></i><b>Muted<br>#6B6B76</b></div>
+      <div class="sw"><i style="background:#E4E4EA"></i><b>Border<br>#E4E4EA</b></div>
+    </div>
+
+    <h2>Типографика</h2>
+    <div class="box">
+      Шрифт: <strong>Montserrat</strong> (как на rippo.ru)<br />
+      H1 страницы: 28/36 SemiBold<br />
+      H2 блока: 18/26 SemiBold<br />
+      Body: 14/22 Regular<br />
+      Price emphasis: 20/28 Bold<br />
+      Caption / hint: 12/18 Regular, #6B6B76<br />
+      Error text: 12/18, #D32F2F
+    </div>
+
+    <h2>Сетка и отступы</h2>
+    <table>
+      <tr><th>Параметр</th><th>Desktop ≥1200</th><th>Tablet 768–1199</th><th>Mobile &lt;768</th></tr>
+      <tr><td>Контент max</td><td>1160px</td><td>100% − 32px</td><td>100% − 32px</td></tr>
+      <tr><td>Корзина/checkout</td><td>2 колонки: контент 1fr + итог 360px</td><td>итог под контентом</td><td>итог sticky bottom</td></tr>
+      <tr><td>Карточка позиции</td><td>фото 88px, gap 16</td><td>фото 72</td><td>фото 64, вертикальный стек действий</td></tr>
+      <tr><td>Поля формы</td><td>высота 48px, radius 8</td><td>48</td><td>48 (hit ≥44)</td></tr>
+      <tr><td>Primary button</td><td>h 52, radius 10, bg #1A1A1A, text #FDEF39</td><td>full width в sticky</td><td>full width sticky</td></tr>
+      <tr><td>Мини-корзина</td><td>drawer 420px справа</td><td>drawer 100% max 420</td><td>bottom sheet 85vh</td></tr>
+    </table>
+
+    <h2>Состояния компонентов</h2>
+    <table>
+      <tr><th>Компонент</th><th>Default</th><th>Hover/Focus</th><th>Disabled</th><th>Error</th><th>Loading</th></tr>
+      <tr><td>Input</td><td>border #E4E4EA</td><td>border #1A1A1A, outline 2px #FDEF39</td><td>bg #F0F0F4</td><td>border #D32F2F</td><td>—</td></tr>
+      <tr><td>Radio delivery/pay</td><td>карточка border</td><td>border dark</td><td>opacity .5</td><td>—</td><td>skeleton price</td></tr>
+      <tr><td>Qty −/+</td><td>32×32 / mobile 44×44</td><td>bg #FDEF39</td><td>opacity .4</td><td>—</td><td>на строке итога</td></tr>
+      <tr><td>Promo chip</td><td>bg #E8F5E9</td><td>—</td><td>—</td><td>bg #FFEBEE</td><td>«Проверяем…»</td></tr>
+    </table>
+
+    <h2>Готовые плагины CMS (адрес / ПВЗ)</h2>
+    <div class="box">
+      <strong>DaData Suggestions</strong> (<code>@dadata/suggestions</code>) — поля города и полного адреса (курьер, Почта).<br />
+      <strong>Виджет ПВЗ СДЭК</strong> (<code>@cdek-it/widget</code>, widget.cdek.ru) — выбор пункта выдачи.<br />
+      Подробности: <a href="09-cms-plugins.html">09-cms-plugins.html</a>. Не писать свой автокомплит с нуля.
+    </div>
+
+    <h2>Иконки (нужны в наборе)</h2>
+    <div class="box">
+      cart, user, close, trash, minus, plus, check, warning, truck, map-pin, credit-card, sbp, refresh, chevron, lock (оплата).<br />
+      Стиль: outline 1.5–2px, 24×24, цвет #1A1A1A. Не использовать эмодзи в UI.
+    </div>
+
+    <h2>Адаптив — правила перестроения</h2>
+    <ul style="font-size:14px;line-height:1.5">
+      <li>Сводка заказа: desktop — sticky справа; mobile — compact bar снизу (итог + CTA), детали по «Подробнее».</li>
+      <li>Sticky CTA не перекрывает активное поле: при focus input bar скрывается или страница скроллит поле выше клавиатуры.</li>
+      <li>Автофокус только на поле промокода после клика «Есть промокод» и на первом ошибочном поле после submit.</li>
+      <li>Горизонтальный скролл запрещён; длинные названия товара — 2 строки + ellipsis.</li>
+    </ul>
+  </div>
+</body>
+</html>

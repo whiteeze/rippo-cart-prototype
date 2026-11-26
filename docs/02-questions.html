@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Вопросы заказчику — RIPPO корзина</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: Montserrat, sans-serif; color: #1a1a1a; margin: 0; background: #F7F7FB; }
+    .page { max-width: 860px; margin: 0 auto; padding: 28px 20px 48px; }
+    h1 { font-size: 24px; margin: 0 0 8px; }
+    .lead { color: #666; margin-bottom: 24px; }
+    h2 { font-size: 16px; background: #FDEF39; display: inline-block; padding: 4px 10px; margin: 22px 0 10px; }
+    ol { background: #fff; border: 1px solid #e4e4ea; border-radius: 12px; padding: 16px 16px 16px 40px; margin: 0; }
+    li { margin: 10px 0; font-size: 14px; line-height: 1.45; }
+    .block { font-size: 12px; color: #888; }
+    .warn { margin-top: 20px; padding: 14px 16px; background: #fff8c8; border-radius: 8px; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a href="../index.html">← К комплекту</a>
+    <h1>Список вопросов заказчику</h1>
+    <p class="lead"><strong>Ответы получены</strong> (Google Sheet). Сводка правил: <a href="08-agreed-rules.html">08-agreed-rules.html</a>. Ниже — исходные вопросы для архива.</p>
+
+    <h2>Коммерческие правила</h2>
+    <ol>
+      <li>Доставка до отделения ТК/Почты на странице «Оплата и доставка» указана как бесплатная, при этом тарифы СДЭК считаются при оформлении. <strong>Какое правило показывать в корзине и в итоге?</strong> <span class="block">блок: доставка / итог</span></li>
+      <li>Когда доступна оплата при получении: только СДЭК ПВЗ, СДЭК курьер, оба? Есть ли лимит суммы? <span class="block">блок: оплата</span></li>
+      <li>Какая часть суммы при COD оплачивается сейчас (доставка? комиссия? предоплата товара?), а какая — при получении? Нужны формулы и примеры. <span class="block">блок: оплата</span></li>
+      <li>Размер и порядок расчёта комиссии за наложенный платёж / COD. <span class="block">блок: оплата</span></li>
+      <li>Почта России: всегда 100% предоплата товара + доставки — подтверждаем? <span class="block">блок: оплата + доставка</span></li>
+      <li>Промокод: совместим ли с общей скидкой сайта? с персональной скидкой ЛК? можно ли суммировать? <span class="block">блок: промокод</span></li>
+      <li>Персональная скидка приоритетнее общей даже если меньше — остаётся? Показывать ли обе перечёркнутыми/неприменёнными? <span class="block">блок: скидки</span></li>
+    </ol>
+
+    <h2>Данные и поля</h2>
+    <ol start="8">
+      <li>Минимальный набор для гостя: имя, телефон, email — достаточно? Когда нужна фамилия (требования СДЭК/Почты)? <span class="block">блок: контакты</span></li>
+      <li>Для курьера СДЭК: улица, дом, квартира, подъезд, домофон, комментарий — какие поля обязательны? <span class="block">блок: адрес</span></li>
+      <li>Подставляем ли сохранённые адреса/ПВЗ для авторизованного пользователя? Сколько адресов хранится? <span class="block">блок: ЛК</span></li>
+      <li>«Быстрый заказ»: какие поля собирает сейчас и что обещаем покупателю (звонок / счёт / сразу заказ)? <span class="block">блок: быстрый заказ</span></li>
+    </ol>
+
+    <h2>Технические зависимости (фиксируем, не чиним)</h2>
+    <ol start="12">
+      <li>Какие тексты ошибок реально возвращают СДЭК / Почта / виджет ПВЗ? Нужен список кодов → человекочитаемые сообщения. <span class="block">блок: доставка</span></li>
+      <li>ТБанк: карта и СБП — отдельные методы или один виджет? Что видит пользователь при незавершённой оплате (ссылка на доплату без нового заказа)? <span class="block">блок: оплата</span></li>
+      <li>Пересчёт корзины и скидок без перезагрузки — уже есть API или нужна доработка на стороне разработки заказчика? <span class="block">зависимость</span></li>
+      <li>Адреса текущих URL: страница корзины, checkout, быстрый заказ, успех/fail оплаты. <span class="block">навигация</span></li>
+    </ol>
+
+    <div class="warn">
+      Пока ответы не получены, в макетах заложены <strong>рабочие допущения</strong> (помечены в прототипе бейджем «на согласование»). После ответов тексты сумм и доступность методов обновляются без смены общей структуры.
+    </div>
+  </div>
+</body>
+</html>

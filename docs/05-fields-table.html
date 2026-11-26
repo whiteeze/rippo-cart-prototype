@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Таблица полей и текстов — RIPPO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: Montserrat, sans-serif; margin: 0; background: #fff; color: #1a1a1a; }
+    .page { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
+    h1 { font-size: 22px; }
+    h2 { font-size: 14px; background: #FDEF39; display: inline-block; padding: 4px 8px; margin: 20px 0 8px; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th, td { border: 1px solid #ddd; padding: 7px 8px; vertical-align: top; text-align: left; }
+    th { background: #f5f5f5; position: sticky; top: 0; }
+    .req { color: #c62828; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a href="../index.html">← К комплекту</a>
+    <h1>Таблица полей, подсказок и ошибок</h1>
+    <p style="font-size:13px;color:#666">Проверка: blur поля + submit. После ошибки значения не сбрасываются. Клавиатура: tel → numeric/tel, индекс → numeric.</p>
+
+    <h2>Получатель (согласовано)</h2>
+    <table>
+      <tr><th>Поле</th><th>Label</th><th>Placeholder / пример</th><th>Обяз.</th><th>Когда проверять</th><th>Ошибка</th></tr>
+      <tr><td>fio</td><td>ФИО</td><td>Иванов Иван Иванович</td><td class="req">да</td><td>blur, submit</td><td>Укажите ФИО полностью — нужно для СДЭК / Почты</td></tr>
+      <tr><td>phone</td><td>Телефон</td><td>+7 900 123-45-67</td><td class="req">да</td><td>blur, submit</td><td>Введите телефон в формате +7 …</td></tr>
+    </table>
+    <p style="font-size:12px;color:#888">Оформление только для авторизованного покупателя. ФИО и телефон подставляются из профиля, можно изменить. Заказ связывается с телефоном. Email в checkout не запрашиваем.</p>
+
+    <h2>Доставка → затем адрес (согласовано)</h2>
+    <table>
+      <tr><th>Поле</th><th>Label</th><th>Пример</th><th>Обяз.</th><th>Ошибка / пустой стейт</th></tr>
+      <tr><td>delivery_method</td><td>Способ доставки</td><td>СДЭК ПВЗ / СДЭК курьер / Почта России</td><td class="req">да (сначала)</td><td>Выберите способ доставки</td></tr>
+      <tr><td>city</td><td>Город</td><td>Казань</td><td class="req">для ПВЗ/курьера</td><td>Укажите город</td></tr>
+      <tr><td>pvz</td><td>Пункт выдачи</td><td>выбор из предложенных СДЭК</td><td class="req">если ПВЗ</td><td>Выберите пункт выдачи</td></tr>
+      <tr><td>address_full</td><td>Адрес доставки полностью</td><td>ул. Баумана, д. 12, кв. 45</td><td class="req">курьер / Почта</td><td>Укажите полный адрес</td></tr>
+      <tr><td>index</td><td>Индекс</td><td>420111</td><td class="req">если Почта</td><td>Укажите индекс</td></tr>
+      <tr><td>comment_addr</td><td>Комментарий курьеру</td><td>Код домофона</td><td>нет</td><td>—</td></tr>
+    </table>
+
+    <h2>Оплата (согласовано)</h2>
+    <table>
+      <tr><th>Элемент</th><th>Текст UI</th><th>Состояния / ошибки</th></tr>
+      <tr><td>pay_online</td><td>Онлайн-оплата</td><td>Карта/СБП выбираются на странице ТБанка</td></tr>
+      <tr><td>pay_cod</td><td>Оплата при получении (СДЭК)</td><td>Только СДЭК; скрыто для Почты; disabled если ПВЗ без COD</td></tr>
+      <tr><td>cod_fee</td><td>Комиссия наложенного платежа 3%</td><td>3% от суммы без доставки; строка в итоге</td></tr>
+      <tr><td>promo</td><td>—</td><td>Промокод на сайте не применяется — блока нет</td></tr>
+    </table>
+
+    <h2>Кнопки и системные тексты</h2>
+    <table>
+      <tr><th>Кнопка / сообщение</th><th>Текст</th></tr>
+      <tr><td>CTA корзина</td><td>Оформить заказ</td></tr>
+      <tr><td>CTA оформление</td><td>Оформить заказ</td></tr>
+      <tr><td>Промокод</td><td>Применить / Удалить код</td></tr>
+      <tr><td>ПВЗ</td><td>Выбрать пункт / Заменить пункт</td></tr>
+      <tr><td>Доставка loading</td><td>Рассчитываем доставку…</td></tr>
+      <tr><td>Доставка stale</td><td>Состав или адрес изменились — пересчитайте доставку</td></tr>
+      <tr><td>Сервис down</td><td>Сервис доставки временно не отвечает. Попробуйте ещё раз или выберите другой способ.</td></tr>
+      <tr><td>Способ недоступен</td><td>Этот способ недоступен для вашего адреса. Доступно: …</td></tr>
+      <tr><td>Создание заказа</td><td>Создаём заказ…</td></tr>
+      <tr><td>Заказ создан</td><td>Заказ №… создан</td></tr>
+      <tr><td>К оплате</td><td>Перейти к оплате</td></tr>
+      <tr><td>Оплата не завершена</td><td>Оплата не завершена. Заказ сохранён — можете оплатить сейчас.</td></tr>
+      <tr><td>Оплата не прошла</td><td>Платёж не прошёл. Попробуйте ещё раз или выберите другой способ.</td></tr>
+      <tr><td>Пустая корзина</td><td>Ваша корзина пуста / Перейти в каталог</td></tr>
+      <tr><td>Быстрый заказ success</td><td>Заявка принята. Это не оплаченный заказ — менеджер свяжется с вами.</td></tr>
+      <tr><td>Доставка в итоге корзины</td><td>Стоимость доставки рассчитаем при оформлении</td></tr>
+      <tr><td>Количество</td><td>Комплектов (не «шт.»)</td></tr>
+    </table>
+  </div>
+</body>
+</html>

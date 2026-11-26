@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Сценарии приёмки — RIPPO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: Montserrat, sans-serif; margin: 0; background: #F7F7FB; color: #1a1a1a; }
+    .page { max-width: 900px; margin: 0 auto; padding: 28px 20px 48px; }
+    h1 { font-size: 24px; }
+    table { width: 100%; border-collapse: collapse; background: #fff; font-size: 13px; }
+    th, td { border: 1px solid #e4e4ea; padding: 9px 10px; vertical-align: top; text-align: left; }
+    th { background: #FDEF39; }
+    .id { font-weight: 700; white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a href="../index.html">← К комплекту</a>
+    <h1>Сценарии приёмки материалов</h1>
+    <p style="color:#666;font-size:14px">Проверка по макетам/прототипу (не по боевому сайту). Критерий: по материалам однозначно понятно поведение.</p>
+    <table>
+      <tr><th>ID</th><th>Действие покупателя</th><th>Ожидаемый результат в материалах</th></tr>
+      <tr><td class="id">A01</td><td>Смотрит шапку с товарами в корзине</td><td>Видны количество и сумма со скидкой; суммы совпадают с корзиной</td></tr>
+      <tr><td class="id">A02</td><td>Открывает пустую корзину</td><td>Текст пустого состояния + переход в каталог; CTA оформления недоступен</td></tr>
+      <tr><td class="id">A03</td><td>Меняет число комплектов</td><td>Подпись «комплект(ов)»; итог пересчитывается без reload; показан стейт пересчёта и ошибки</td></tr>
+      <tr><td class="id">A04</td><td>Вводит промокод (ok / bad / not applicable)</td><td>Три разных сообщения; удаление кода показано</td></tr>
+      <tr><td class="id">A05</td><td>Неавторизованный жмёт «Оформить»</td><td>Оформление недоступно — предложение войти / зарегистрироваться (ник, телефон)</td></tr>
+      <tr><td class="id">A06</td><td>Авторизованный оформляет заказ</td><td>ФИО и телефон из профиля подставлены, можно изменить; гостевого сценария нет</td></tr>
+      <tr><td class="id">A07</td><td>Не ввёл город</td><td>Подсказка, какие данные нужны; способы без цены или скрыты</td></tr>
+      <tr><td class="id">A08</td><td>Выбрал город без полного адреса</td><td>Доступные варианты + что уточнить</td></tr>
+      <tr><td class="id">A09</td><td>Идёт расчёт / ошибка сервиса / способ недоступен</td><td>Отдельные экраны/состояния с действием</td></tr>
+      <tr><td class="id">A10</td><td>Выбрал ПВЗ, затем заменил</td><td>Адрес ПВЗ виден; «Заменить» обновляет сводку</td></tr>
+      <tr><td class="id">A11</td><td>Выбрал курьера</td><td>Поля адреса; цена/срок курьера</td></tr>
+      <tr><td class="id">A12</td><td>Выбрал оплату при получении</td><td>Строки «сейчас / при получении / всего»; не конфликтует с картой/СБП</td></tr>
+      <tr><td class="id">A13</td><td>Меняет адрес после расчёта</td><td>Старый расчёт не выглядит действующим</td></tr>
+      <tr><td class="id">A14</td><td>Жмёт «Оформить» с пустыми полями</td><td>Ошибки у полей; данные не пропадают</td></tr>
+      <tr><td class="id">A15</td><td>Оплата не завершена / не прошла</td><td>Заказ не создаётся повторно; есть продолжение оплаты</td></tr>
+      <tr><td class="id">A16</td><td>Быстрый заказ</td><td>Явно заявка, не оплаченный заказ</td></tr>
+      <tr><td class="id">A17</td><td>Смотрит mobile</td><td>Нет горизонтального скролла; hit-зоны ≥44px; sticky CTA не перекрывает поля</td></tr>
+      <tr><td class="id">A18</td><td>Сравнивает desktop и mobile одних экранов</td><td>Одинаковая логика блоков; описаны правила перестроения</td></tr>
+    </table>
+  </div>
+</body>
+</html>
