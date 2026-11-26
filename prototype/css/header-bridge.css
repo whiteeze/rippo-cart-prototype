@@ -1,0 +1,45 @@
+/* Мост: шапка rippo.ru + наш прототип без поломки экранов */
+
+/* Прототип-панель всегда поверх */
+.proto-bar { position: sticky; top: 0; z-index: 10000; }
+
+/* Шапка на всю ширину, как на сайте */
+header.header.header--v3 {
+  width: 100%;
+  max-width: none;
+}
+
+/* В режиме Mobile 390 принудительно мобильная шапка сайта */
+body.mobile .header__desktop { display: none !important; }
+body.mobile .header__mobile { display: block !important; }
+body.mobile .sticky-header-block { display: none !important; }
+
+body:not(.mobile) .header__mobile { display: none !important; }
+body:not(.mobile) .header__desktop { display: block !important; }
+
+/* Наши экраны не ломаются стилями сайта */
+#app-frame .page,
+#app-frame .card,
+#app-frame .field,
+#app-frame .btn,
+#app-frame .summary-row,
+#app-frame .line,
+#app-frame .checkout-step {
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+}
+
+#app-frame .btn {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Корзина в шапке кликабельна */
+#open-drawer,
+.header__cart-btn {
+  cursor: pointer;
+}
+
+/* Счётчик в mark как на сайте */
+.header__cart-total .cart-total-counter {
+  margin-left: 4px;
+}

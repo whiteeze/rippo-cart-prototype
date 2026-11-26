@@ -186,10 +186,18 @@
     }
   });
 
-  $('#open-drawer')?.addEventListener('click', openDrawer);
+  $('#open-drawer')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    openDrawer();
+  });
   $('#close-drawer')?.addEventListener('click', closeDrawer);
   $('#overlay')?.addEventListener('click', closeDrawer);
   $('#drawer-checkout')?.addEventListener('click', () => showScreen('checkout'));
+
+  document.querySelector('[data-open-catalog]')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.open('https://rippo.ru/katalog-prostavok/', '_blank', 'noopener');
+  });
 
   $('#viewport')?.addEventListener('change', (e) => {
     const frame = $('#app-frame');
