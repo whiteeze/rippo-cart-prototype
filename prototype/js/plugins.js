@@ -300,8 +300,9 @@
               hintContent: p.street,
             },
             {
-              preset: p.cod ? 'islands#darkGreenShoppingIcon' : 'islands#greenShoppingIcon',
-              iconColor: '#00A651',
+              // Метки в жёлтом акценте сайта RIPPO (#fdef39)
+              preset: 'islands#yellowShoppingIcon',
+              iconColor: '#fdef39',
             }
           );
 

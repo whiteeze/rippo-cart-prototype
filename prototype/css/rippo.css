@@ -1,17 +1,21 @@
+/* Токены строго с rippo.ru (computed / CSS site) */
 :root {
-  --yellow: #FDEF39;
-  --yellow-dark: #e6d83a;
-  --bg: #F7F7FB;
-  --text: #1A1A1A;
-  --muted: #6B6B76;
-  --line: #E4E4EA;
-  --green: #2F9E44;
-  --error: #D32F2F;
-  --ok: #2E7D32;
+  --theme-primary-color: #fdef39;
+  --theme-secondary-color: #aaa120;
+  --yellow: #fdef39;
+  --yellow-dark: #aaa120;
+  --bg: #f7f7fb;
+  --text: #000000;
+  --muted: #666666;
+  --line: #e5e7eb;
+  --green: #55bd02; /* «Заказать звонок» на сайте */
+  --error: #d32f2f;
+  --ok: #2e7d32;
   --white: #fff;
-  --shadow: 0 8px 28px rgba(0,0,0,.12);
-  --radius: 10px;
-  --font: Montserrat, system-ui, sans-serif;
+  --shadow: 0 4px 16px rgba(0,0,0,.08);
+  --radius: 5px; /* как ui-btn на сайте */
+  --font: Montserrat, Arial, Helvetica, sans-serif;
+  --font-ui: Poppins, Helvetica, Arial, sans-serif;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
@@ -21,6 +25,7 @@ body {
   color: var(--text);
   line-height: 1.45;
   min-height: 100vh;
+  font-size: 16px;
 }
 button, input, select { font: inherit; }
 a { color: inherit; }
@@ -75,12 +80,12 @@ html.dadata-live .suggest-list { display: none !important; }
 .cdek-modal[hidden] { display: none !important; }
 .cdek-modal-head {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 16px; border-bottom: 1px solid #009845;
-  background: #00A651;
-  color: #fff;
+  padding: 12px 16px; border-bottom: 1px solid #000;
+  background: var(--yellow);
+  color: #000;
 }
 .cdek-modal-head button {
-  border: 0; background: none; font-size: 22px; cursor: pointer; line-height: 1; color: #fff;
+  border: 0; background: none; font-size: 22px; cursor: pointer; line-height: 1; color: #000;
 }
 .cdek-modal-body { flex: 1; min-height: 0; position: relative; }
 .cdek-modal-split {
@@ -102,19 +107,19 @@ html.dadata-live .suggest-list { display: none !important; }
 }
 .cdek-pvz-option {
   display: block; width: 100%; text-align: left;
-  border: 1px solid #c8e6d1; border-radius: 10px;
+  border: 1px solid var(--line); border-radius: var(--radius);
   background: #fff; padding: 12px 14px; margin: 0 0 8px; cursor: pointer;
-  border-left: 4px solid #00A651;
+  border-left: 4px solid var(--yellow);
 }
 .cdek-pvz-option:hover,
 .cdek-pvz-option.selected {
-  border-color: #00A651;
-  border-left-color: #00A651;
-  background: #E8F8EF;
+  border-color: #000;
+  border-left-color: var(--yellow);
+  background: #fffef0;
 }
-.cdek-pvz-option b { display: block; font-size: 14px; margin-bottom: 4px; color: #0B5C32; }
+.cdek-pvz-option b { display: block; font-size: 14px; margin-bottom: 4px; color: #000; }
 .cdek-pvz-option span { font-size: 12px; color: var(--muted); }
-#cdek-city-label { color: #0B5C32; font-weight: 600; }
+#cdek-city-label { color: #000; font-weight: 600; }
 #cdek-overlay { z-index: 1201; }
 .frame-mobile {
   max-width: 390px; margin: 16px auto 40px;
@@ -141,8 +146,9 @@ html.dadata-live .suggest-list { display: none !important; }
 .header-contacts { text-align: right; font-size: 13px; }
 .header-contacts a { font-weight: 700; text-decoration: none; }
 .btn-call {
-  background: var(--green); color: #fff; border: 0; border-radius: 8px;
-  padding: 10px 14px; font-weight: 700; cursor: pointer; white-space: nowrap;
+  background: var(--green); color: #fff; border: 0; border-radius: 5px;
+  padding: 12px 16px; font-family: var(--font-ui); font-weight: 600; font-size: 15px;
+  cursor: pointer; white-space: nowrap;
 }
 .nav {
   background: var(--yellow);
@@ -153,15 +159,16 @@ html.dadata-live .suggest-list { display: none !important; }
   max-width: 1160px; margin: 0 auto; width: 100%;
   display: flex; align-items: center; gap: 8px;
 }
-.nav a { text-decoration: none; font-size: 13px; font-weight: 600; padding: 8px; }
+.nav a { text-decoration: none; font-size: 13px; font-weight: 600; padding: 8px; color: #000; }
 .nav-spacer { flex: 1; }
+/* Как кнопка «Корзина» в шапке сайта: жёлтый фон + чёрная обводка */
 .cart-btn {
   display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(0,0,0,.08); border: 0; border-radius: 8px;
-  padding: 8px 12px; font-weight: 700; cursor: pointer;
+  background: var(--yellow); border: 1px solid #000; border-radius: 5px;
+  padding: 8px 12px; font-weight: 600; cursor: pointer; color: #000;
 }
 .cart-badge {
-  background: var(--text); color: var(--yellow);
+  background: #000; color: var(--yellow);
   font-size: 11px; min-width: 18px; height: 18px; border-radius: 99px;
   display: grid; place-items: center; padding: 0 5px;
 }
@@ -291,7 +298,7 @@ html.dadata-live .suggest-list { display: none !important; }
   padding: 14px; cursor: pointer; margin-bottom: 8px; background: #fff;
 }
 .choice:hover { border-color: #bbb; }
-.choice.selected { border-color: var(--text); box-shadow: inset 0 0 0 1px var(--text); background: #FFFEF0; }
+.choice.selected { border-color: #000; box-shadow: inset 0 0 0 1px #000; background: #fffef0; }
 .choice.disabled { opacity: .45; pointer-events: none; }
 .choice input { margin-top: 3px; }
 .choice b { display: block; font-size: 14px; }
@@ -299,27 +306,44 @@ html.dadata-live .suggest-list { display: none !important; }
 .choice .right { margin-left: auto; text-align: right; font-weight: 700; white-space: nowrap; }
 
 /* —— Buttons —— */
+/* Primary = .ui-btn--primary на rippo.ru: #fdef39 + чёрный текст */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  height: 52px; padding: 0 20px; border-radius: 10px; border: 0;
-  font-weight: 700; cursor: pointer; text-decoration: none;
+  height: 52px; padding: 0 20px; border: 0;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-decoration: none;
 }
-/* Primary как на сайте RIPPO — жёлтая кнопка */
-.btn-primary { background: var(--yellow); color: var(--text); width: 100%; border: 1px solid #e6d83a; }
-.btn-primary:hover { filter: brightness(0.98); }
+.btn-primary {
+  background: var(--theme-primary-color);
+  color: #000;
+  width: 100%;
+  border: 0;
+  min-height: 52px;
+}
+.btn-primary:hover { filter: brightness(0.97); }
 .btn-primary:disabled { opacity: .4; cursor: not-allowed; }
-.btn-secondary { background: #fff; border: 1px solid var(--line); color: var(--text); width: 100%; }
-.btn-yellow { background: var(--yellow); color: var(--text); }
-.btn-cdek { background: #00A651; color: #fff; }
-.btn-cdek:hover { background: #009845; }
+.btn-secondary {
+  background: #fff;
+  border: 1px solid #000;
+  color: #000;
+  width: 100%;
+  min-height: 48px;
+}
+.btn-yellow { background: var(--yellow); color: #000; border: 0; }
+.btn-cdek { background: var(--yellow); color: #000; border: 1px solid #000; }
+.btn-cdek:hover { background: #fff59d; }
 .btn-row { display: grid; gap: 8px; margin-top: 14px; }
 .btn-row.two { grid-template-columns: 1fr 1fr; }
 @media (max-width: 520px) {
   .btn-row.two { grid-template-columns: 1fr; }
 }
 .pvz-card {
-  border-color: #c8e6d1 !important;
-  border-left: 4px solid #00A651;
+  border-color: var(--line) !important;
+  border-left: 4px solid var(--yellow);
 }
 .btn-sm { height: 40px; padding: 0 14px; font-size: 13px; }
 
@@ -388,7 +412,7 @@ html.dadata-live .suggest-list { display: none !important; }
   border: 1px dashed var(--line); border-radius: 8px; padding: 12px; margin-top: 8px;
   display: flex; justify-content: space-between; gap: 12px; align-items: center;
 }
-.dual-pay { background: #FFFEF0; border: 1px solid var(--yellow-dark); border-radius: 8px; padding: 12px; margin-top: 10px; }
+.dual-pay { background: #fffef0; border: 1px solid var(--yellow); border-radius: var(--radius); padding: 12px; margin-top: 10px; }
 .screen { display: none; }
 .screen.active { display: block; }
 
