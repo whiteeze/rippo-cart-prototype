@@ -426,7 +426,10 @@ body.mobile #app-frame .cart.cart--proto .cart__item-desc {
   margin: 0;
 }
 body.mobile #app-frame .cart.cart--proto .cart__item-text {
-  display: none !important;
+  display: block !important;
+  font-size: 1.3rem;
+  line-height: 1.35;
+  color: #6b6b7b;
 }
 body.mobile #app-frame .cart.cart--proto .cart__item-price {
   width: auto;
