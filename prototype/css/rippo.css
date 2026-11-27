@@ -1065,49 +1065,6 @@ body.mobile .checkout-footer .btn {
   color: #666;
 }
 .field-hint--ok { color: #2e7d32; }
-.pvz-map-teaser {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 0;
-  height: 120px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 10px;
-  background: #e8eef5;
-}
-.pvz-map-teaser__map,
-.pvz-map-teaser__side {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: 600;
-  color: #555;
-  text-align: center;
-  padding: 8px;
-}
-.pvz-map-teaser__map {
-  background:
-    linear-gradient(135deg, rgba(253,239,57,.35) 0%, transparent 40%),
-    repeating-linear-gradient(0deg, transparent, transparent 18px, rgba(0,0,0,.04) 18px, rgba(0,0,0,.04) 19px),
-    repeating-linear-gradient(90deg, transparent, transparent 18px, rgba(0,0,0,.04) 18px, rgba(0,0,0,.04) 19px),
-    #d7e3f0;
-}
-.pvz-map-teaser__side {
-  background: #fff;
-  border-left: 1px solid var(--line);
-  color: #888;
-}
-body.mobile .pvz-map-teaser {
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 40%;
-  height: 140px;
-}
-body.mobile .pvz-map-teaser__side {
-  border-left: 0;
-  border-top: 1px solid var(--line);
-}
 .pvz-card--selected {
   border-color: #000;
   background: #fffcf0;
