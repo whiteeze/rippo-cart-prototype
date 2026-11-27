@@ -43,6 +43,24 @@
 - Шрифт: Montserrat
 - Зелёный CTA (звонок): `#2F9E44`
 
+## Финальный комплект (`exports/final-kit/`)
+
+После согласования макета:
+
+| Что | Где |
+|---|---|
+| PDF документов 01–08 | `exports/final-kit/pdf/` |
+| PDF макетов экранов | `exports/final-kit/pdf/09-mockups-screens.pdf` |
+| PNG экранов | `exports/final-kit/mockups/` |
+| Инструкция Figma + ассеты | `exports/final-kit/figma/` |
+| Текст письма заказчику | `exports/final-kit/DELIVERY-LETTER.txt` |
+
 ## Figma
 
-Hi-fi экраны и состояния собраны в HTML-прототипе (desktop + mobile). Для передачи редактируемого `.fig` импортируйте ключевые экраны в Figma (плагин html.to.design / скриншоты → Auto Layout) или попросите доработку в Figma после согласования логики.
+По ТЗ нужно передать: ссылку can view, исходник `.fig`, PDF макетов.
+
+1. Hi-fi уже в HTML-прототипе (desktop + mobile).
+2. PNG для импорта лежат в `exports/final-kit/figma/`.
+3. Пошагово: `exports/final-kit/figma/README-FIGMA.md` (html.to.design или импорт PNG → Share can view → Save .fig).
+
+Без входа в аккаунт Figma ссылку и `.fig` создать нельзя — после логина можно доимпортировать экраны за один проход.

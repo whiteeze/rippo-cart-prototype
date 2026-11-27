@@ -3,30 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Как сдать заказчику — RIPPO</title>
+  <title>Финальная сдача — RIPPO</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     body { font-family: Montserrat, sans-serif; max-width: 760px; margin: 0 auto; padding: 28px 20px; color: #1a1a1a; background: #F7F7FB; }
     h1 { font-size: 24px; }
-    ol { background: #fff; border-radius: 12px; padding: 20px 20px 20px 40px; border: 1px solid #e4e4ea; }
+    h2 { font-size: 15px; background: #FDEF39; display: inline-block; padding: 4px 8px; }
+    ol, ul { background: #fff; border-radius: 12px; padding: 20px 20px 20px 40px; border: 1px solid #e4e4ea; }
     li { margin: 12px 0; line-height: 1.45; }
     .box { background: #fff8c8; padding: 14px 16px; border-radius: 8px; margin-top: 20px; font-size: 14px; }
+    .ok { background: #e8f5e9; border-left: 4px solid #2F9E44; padding: 14px 16px; border-radius: 8px; margin: 16px 0; }
     code { background: #eee; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+    a { color: #1a73e8; }
   </style>
 </head>
 <body>
   <a href="../index.html">← К комплекту</a>
-  <h1>Как передать заказчику (по порядку из ТЗ)</h1>
+  <h1>Финальная сдача (макет согласован)</h1>
+
+  <div class="ok"><strong>Статус:</strong> структура и прототип согласованы с заказчиком. Собираем и передаём полный комплект.</div>
+
+  <h2>Что отдаём</h2>
   <ol>
-    <li><strong>Сейчас (этап 1):</strong> отправьте <code>01-ux-report.html</code> (Ctrl+P → PDF), <code>03-user-flow.html</code> и <code>02-questions.html</code>. Дождитесь ответов на коммерческие вопросы.</li>
-    <li><strong>После согласования логики:</strong> покажите прототип <code>prototype/index.html</code> (можно залить на любой хостинг или отправить архивом). Переключите Desktop/Mobile в верхней панели.</li>
-    <li><strong>Полный комплект:</strong> описание поведения, таблица полей, сценарии приёмки, дизайн-спеки — файлы 04–07. Их можно сохранить в PDF или скопировать в DOCX/XLSX.</li>
-    <li><strong>Figma:</strong> hi-fi уже в HTML-прототипе. Для редактируемого .fig — импорт экранов в Figma (html.to.design) или отрисовка по спекам после финальных ответов. Исходник .fig и PDF-экспорт приложите к сдаче.</li>
-    <li><strong>Не делать:</strong> не ставить ничего на rippo.ru, не трогать CMS/core, не менять API.</li>
+    <li><strong>Документы 01–08</strong> — HTML в <code>docs/</code> и PDF в <code>exports/final-kit/pdf/</code>.</li>
+    <li><strong>Кликабельный прототип</strong> — <a href="https://whiteeze.github.io/rippo-cart-prototype/prototype/?v=20261127f">GitHub Pages</a> + исходники в <code>prototype/</code>.</li>
+    <li><strong>PDF макетов</strong> — <code>exports/final-kit/pdf/09-mockups-screens.pdf</code> (8 ключевых экранов).</li>
+    <li><strong>PNG экранов</strong> — <code>exports/final-kit/mockups/</code>.</li>
+    <li><strong>Figma</strong> — ссылка can view + файл <code>.fig</code> (см. <code>exports/final-kit/figma/README-FIGMA.md</code>). Без входа в аккаунт Figma ссылку и .fig создать нельзя — ассеты для импорта готовы.</li>
+    <li><strong>Текст письма</strong> — <code>exports/final-kit/DELIVERY-LETTER.txt</code>.</li>
   </ol>
+
+  <h2>Порядок передачи</h2>
+  <ol>
+    <li>Отправить ссылки на комплект и прототип.</li>
+    <li>Приложить архив <code>exports/final-kit</code> (PDF + PNG + инструкция Figma).</li>
+    <li>Создать Figma-файл → Share can view → положить <code>.fig</code> в архив → вставить ссылку в письмо.</li>
+    <li>Напомнить: код на rippo.ru не ставим; внедрение на стороне заказчика.</li>
+  </ol>
+
   <div class="box">
-    <strong>Текст для заказчика (можно вставить в сообщение):</strong><br /><br />
-    «Подготовил этап 1 по ТЗ: краткий UX-аудит (1 стр.), схему сценария от корзины до оплаты и список вопросов по суммам/доставке/промокоду. Коммерческие правила не придумывал — жду ответы, после этого финализирую макеты и полный комплект (прототип уже собран в стиле RIPPO для параллельного просмотра).»
+    <strong>Figma — осталось с вашей стороны:</strong> войти в Figma → импорт PNG из <code>exports/final-kit/figma/</code> или html.to.design по URL прототипа → Share (can view) → Save .fig. Либо войдите в Figma в браузере Cursor и напишите «продолжи Figma».
   </div>
 </body>
 </html>
