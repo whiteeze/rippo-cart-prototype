@@ -9,8 +9,8 @@
   <!-- CSS шапки 1:1 с rippo.ru -->
   <link rel="stylesheet" href="css/rippo-site-mclib.css" />
   <link rel="stylesheet" href="css/rippo-site-local.css" />
-  <link rel="stylesheet" href="css/rippo.css?v=20261127b" />
-  <link rel="stylesheet" href="css/header-bridge.css?v=20261127b" />
+    <link rel="stylesheet" href="css/rippo.css?v=20261127e" />
+  <link rel="stylesheet" href="css/header-bridge.css?v=20261127e" />
 </head>
 <body>
   <div class="proto-bar">
@@ -20,7 +20,7 @@
     <button type="button" data-screen="delivery-states">Состояния доставки</button>
     <button type="button" data-screen="result-ok">Успех</button>
     <button type="button" data-screen="result-pay">Оплата не завершена</button>
-    <button type="button" id="goto-mobile-cart">Мобильная корзина</button>
+    <button type="button" id="goto-mobile-cart">Mobile 390 · корзина</button>
     <button type="button" data-screen="quick">Быстрый заказ</button>
     <button type="button" data-screen="wire">Wireframes</button>
     <select id="viewport">
@@ -117,54 +117,6 @@
             </div>
             <p class="hint" style="text-align:center;margin-top:10px">Можно оформить без регистрации</p>
           </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- SCREEN: MOBILE CART MOCK (отдельный макет для заказчика) -->
-    <section class="screen" id="screen-cart-mobile">
-      <div class="page" style="max-width:390px;margin:0 auto;padding-bottom:24px">
-        <div class="wire-label">Отдельный мобильный макет корзины · 390px</div>
-        <div class="mobile-only-note" style="display:block">Телефон: товары сверху → итог → две кнопки внизу без перекрытия контента</div>
-        <h1 style="font-size:22px;margin-bottom:12px">Корзина</h1>
-
-        <div class="card" style="padding:12px">
-          <div class="line drawer-line" data-line="1">
-            <img class="thumb" src="media/prostavka.jpg" alt="Проставка 30 мм" width="64" height="64" />
-            <div>
-              <p class="line-title">Передние проставки для Toyota<br> Camry IX (XV70) - 2017 по 2022 Седан</p>
-              <div class="line-meta">Высота: 30 мм<br><b>1 890 ₽</b> за комплект</div>
-              <div class="qty">
-                <button type="button" data-qty="-1">−</button>
-                <span class="qty-val">1</span>
-                <button type="button" data-qty="1">+</button>
-              </div>
-              <button class="link-danger" type="button" data-remove>Удалить</button>
-            </div>
-          </div>
-          <div class="line drawer-line" data-line="2">
-            <img class="thumb" src="media/prostavka.jpg" alt="Проставка 20 мм" width="64" height="64" />
-            <div>
-              <p class="line-title">Задние проставки для Kia<br> Sportage QL</p>
-              <div class="line-meta">Высота: 20 мм<br><b>1 350 ₽</b> за комплект</div>
-              <div class="qty">
-                <button type="button" data-qty="-1">−</button>
-                <span class="qty-val">2</span>
-                <button type="button" data-qty="1">+</button>
-              </div>
-              <button class="link-danger" type="button" data-remove>Удалить</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:12px">
-          <div class="summary-row"><span class="dim">Товары (3 компл.)</span><span>4 590 ₽</span></div>
-          <div class="summary-row"><span class="dim">Доставка</span><span class="dim">Рассчитаем при оформлении</span></div>
-          <div class="summary-row total"><span>Итого</span><span>4 590 ₽</span></div>
-          <div class="btn-row" style="margin-top:12px">
-            <button class="btn btn-primary" type="button" data-go="checkout">Оформить заказ</button>
-            <button class="btn btn-secondary" type="button" id="continue-shopping-mm">Продолжить покупки</button>
-          </div>
         </div>
       </div>
     </section>
@@ -293,70 +245,17 @@
             </div>
           </div>
 
-          <!-- 3. Найдите ваш адрес -->
-          <div class="checkout-step" id="block-address">
-            <h2>Найдите ваш адрес</h2>
-            <div class="checkout-step-body">
-              <div class="field suggest-field">
-                <div class="suggest-anchor">
-                  <input id="checkout-address-main" class="address-suggest-input js-dadata-address" placeholder="Введите город, улицу, номер дома для расчёта стоимости доставки" autocomplete="off" data-city-target="city-input" data-index-target="post-index" />
-                  <div class="suggest-list hidden" id="checkout-address-suggest" role="listbox"></div>
-                </div>
-              </div>
-              <div class="checkout-address-grid">
-                <div class="field" id="f-index">
-                  <label>Индекс</label>
-                  <input id="post-index" name="index" inputmode="numeric" placeholder="Укажите индекс" />
-                </div>
-                <div class="field">
-                  <label>Регион</label>
-                  <input name="region" placeholder="Ваш регион" />
-                </div>
-                <div class="field suggest-field" id="f-city-pvz">
-                  <label>Населенный пункт</label>
-                  <div class="suggest-anchor">
-                    <input id="city-input" class="js-dadata-city" name="city" placeholder="Ваш город/н.пункт" autocomplete="off" />
-                    <div class="suggest-list hidden" id="city-pvz-suggest" role="listbox"></div>
-                  </div>
-                </div>
-                <div class="field">
-                  <label>Улица</label>
-                  <input name="street" placeholder="Ваша улица" />
-                </div>
-                <div class="row-3">
-                  <div class="field">
-                    <label>Дом</label>
-                    <input name="house" placeholder="Ваш дом" />
-                  </div>
-                  <div class="field">
-                    <label>Корпус</label>
-                    <input name="korp" placeholder="" />
-                  </div>
-                  <div class="field">
-                    <label>Квартира</label>
-                    <input name="apart" placeholder="" />
-                  </div>
-                </div>
-              </div>
-              <!-- скрытые поля для совместимости JS курьер/почта -->
-              <input type="hidden" id="courier-city" class="js-dadata-city" />
-              <input type="hidden" id="courier-address" class="address-suggest-input js-dadata-address" data-city-target="courier-city" />
-              <input type="hidden" id="post-city" class="js-dadata-city" />
-              <input type="hidden" id="post-address" class="address-suggest-input js-dadata-address" data-city-target="post-city" data-index-target="post-index" />
-            </div>
-          </div>
-
-          <!-- 4. Способ доставки -->
+          <!-- 3. Способ доставки (сначала) -->
           <div class="checkout-step" id="block-delivery">
             <h2>Укажите способ доставки</h2>
             <div class="checkout-step-body">
               <div id="delivery-methods" class="delivery-variants">
-                <label class="delivery-radio" data-delivery="post">
-                  <input type="radio" name="delivery" value="post" />
+                <label class="delivery-radio selected" data-delivery="pvz">
+                  <input type="radio" name="delivery" value="pvz" checked />
                   <span class="delivery-check"></span>
-                  <img class="delivery-logo" src="media/pochtacheckout.png" alt="Почта России" width="50" height="24" />
-                  <span class="delivery-label">Доставка почтой России</span>
-                  <span class="delivery-price" id="price-post">420 ₽</span>
+                  <img class="delivery-logo" src="media/cdek.png" alt="СДЭК" width="50" height="15" />
+                  <span class="delivery-label">Доставка до ПВЗ СДЭК <span class="muted">3–5 дн.</span></span>
+                  <span class="delivery-price" id="price-pvz">350 ₽</span>
                 </label>
                 <label class="delivery-radio" data-delivery="courier">
                   <input type="radio" name="delivery" value="courier" />
@@ -365,47 +264,123 @@
                   <span class="delivery-label">Доставка до двери <span class="muted">3–6 дн.</span></span>
                   <span class="delivery-price" id="price-courier">490 ₽</span>
                 </label>
-                <label class="delivery-radio selected" data-delivery="pvz">
-                  <input type="radio" name="delivery" value="pvz" checked />
+                <label class="delivery-radio" data-delivery="post">
+                  <input type="radio" name="delivery" value="post" />
                   <span class="delivery-check"></span>
-                  <img class="delivery-logo" src="media/cdek.png" alt="СДЭК" width="50" height="15" />
-                  <span class="delivery-label">Доставка до ПВЗ СДЭК <span class="muted">3–5 дн.</span></span>
-                  <span class="delivery-price" id="price-pvz">350 ₽</span>
+                  <img class="delivery-logo" src="media/pochtacheckout.png" alt="Почта России" width="50" height="24" />
+                  <span class="delivery-label">Доставка почтой России</span>
+                  <span class="delivery-price" id="price-post">420 ₽</span>
                 </label>
               </div>
               <div id="delivery-loading" class="banner banner-info hidden"><span class="spinner"></span>Уточняем стоимость доставки…</div>
               <div id="delivery-stale" class="banner banner-warn hidden">Состав заказа изменился — пересчитайте доставку.</div>
-
-              <div id="pvz-fields">
-                <div id="pvz-block">
-                  <div class="pvz-card">
-                    <div>
-                      <b>Выберите пункт самовывоза</b>
-                      <div class="muted">Карта и список ПВЗ СДЭК</div>
-                    </div>
-                    <button class="btn btn-cdek btn-sm" type="button" id="pick-pvz">Выбрать ПВЗ на карте</button>
-                  </div>
-                </div>
-                <div id="pvz-selected" class="hidden">
-                  <div class="pvz-card">
-                    <div>
-                      <b>СДЭК, ул. Баумана, 9</b>
-                      <div class="muted">Казань · пн–пт 10:00–20:00 · наложенный платёж доступен</div>
-                    </div>
-                    <button class="btn btn-cdek btn-sm" type="button" id="change-pvz">Заменить</button>
-                  </div>
-                </div>
-                <div id="pvz-no-cod" class="banner banner-warn hidden">
-                  В этом ПВЗ недоступна оплата при получении. Выберите другой пункт или оплатите онлайн.
-                  <div style="margin-top:8px">
-                    <button class="btn btn-cdek btn-sm" type="button" id="change-pvz-2">Выбрать другой ПВЗ</button>
-                  </div>
-                </div>
-              </div>
-              <div id="courier-fields" class="hidden"></div>
               <div id="post-fields" class="hidden">
                 <div class="banner banner-info">Почта России: оплата 100% онлайн (товар + доставка).</div>
               </div>
+            </div>
+          </div>
+
+          <!-- 4. Адрес / ПВЗ — поля зависят от способа доставки -->
+          <div class="checkout-step" id="block-address">
+            <h2 id="address-step-title">Населённый пункт и пункт выдачи</h2>
+            <div class="checkout-step-body">
+
+              <!-- ПВЗ СДЭК: только н.п. + карта ПВЗ (без улицы/дома/квартиры) -->
+              <div id="addr-pvz">
+                <div class="field suggest-field" id="f-city-pvz">
+                  <label>Населённый пункт</label>
+                  <div class="suggest-anchor">
+                    <input id="city-input" class="js-dadata-city" name="city" placeholder="Город или населённый пункт" autocomplete="off" />
+                    <div class="suggest-list hidden" id="city-pvz-suggest" role="listbox"></div>
+                  </div>
+                  <p class="field-hint">Указывается один раз — для расчёта тарифа и списка ПВЗ.</p>
+                </div>
+
+                <div id="pvz-fields">
+                  <div id="pvz-block">
+                    <div class="pvz-map-teaser" aria-hidden="true">
+                      <div class="pvz-map-teaser__map">Карта ПВЗ СДЭК</div>
+                      <div class="pvz-map-teaser__side">Список пунктов</div>
+                    </div>
+                    <div class="pvz-card">
+                      <div>
+                        <b>Выберите пункт выдачи на карте</b>
+                        <div class="muted">Откроется окно: слева карта (~60%), справа список. Клик по метке или строке — выбор ПВЗ.</div>
+                      </div>
+                      <button class="btn btn-cdek btn-sm" type="button" id="pick-pvz">Открыть карту ПВЗ</button>
+                    </div>
+                    <p class="field-hint">На телефоне карта занимает верхнюю половину окна, список — нижнюю. После выбора адрес ПВЗ появится здесь.</p>
+                  </div>
+                  <div id="pvz-selected" class="hidden">
+                    <div class="pvz-card pvz-card--selected">
+                      <div>
+                        <div class="muted" style="margin-bottom:4px">Выбранный ПВЗ</div>
+                        <b>СДЭК, ул. Баумана, 9</b>
+                        <div class="muted">Казань · пн–пт 10:00–20:00 · наложенный платёж доступен</div>
+                      </div>
+                      <button class="btn btn-cdek btn-sm" type="button" id="change-pvz">Заменить на карте</button>
+                    </div>
+                  </div>
+                  <div id="pvz-no-cod" class="banner banner-warn hidden">
+                    В этом ПВЗ недоступна оплата при получении. Выберите другой пункт или оплатите онлайн.
+                    <div style="margin-top:8px">
+                      <button class="btn btn-cdek btn-sm" type="button" id="change-pvz-2">Выбрать другой ПВЗ</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Курьер / Почта: поиск адреса + автозаполнение полей -->
+              <div id="addr-door" class="hidden">
+                <div class="field suggest-field">
+                  <label>Найдите ваш адрес</label>
+                  <div class="suggest-anchor">
+                    <input id="checkout-address-main" class="address-suggest-input js-dadata-address" placeholder="Город, улица, дом" autocomplete="off" data-city-target="door-city" data-index-target="post-index" />
+                    <div class="suggest-list hidden" id="checkout-address-suggest" role="listbox"></div>
+                  </div>
+                  <p class="field-hint" id="address-autofill-hint">Выберите подсказку — населённый пункт, улица, дом и индекс заполнятся автоматически. Дублировать город отдельно не нужно.</p>
+                  <div class="error-text hidden" id="checkout-address-error"></div>
+                </div>
+                <div class="checkout-address-grid" id="door-address-grid">
+                  <div class="field" id="f-index">
+                    <label>Индекс</label>
+                    <input id="post-index" name="index" inputmode="numeric" placeholder="Укажите индекс" />
+                  </div>
+                  <div class="field">
+                    <label>Регион</label>
+                    <input id="door-region" name="region" placeholder="Ваш регион" />
+                  </div>
+                  <div class="field" id="f-door-city">
+                    <label>Населённый пункт</label>
+                    <input id="door-city" name="city_door" placeholder="Заполняется из поиска" readonly />
+                  </div>
+                  <div class="field">
+                    <label>Улица</label>
+                    <input id="door-street" name="street" placeholder="Ваша улица" />
+                  </div>
+                  <div class="row-3">
+                    <div class="field">
+                      <label>Дом</label>
+                      <input id="door-house" name="house" placeholder="Дом" />
+                    </div>
+                    <div class="field">
+                      <label>Корпус</label>
+                      <input id="door-korp" name="korp" placeholder="" />
+                    </div>
+                    <div class="field">
+                      <label>Квартира</label>
+                      <input id="door-apart" name="apart" placeholder="" />
+                    </div>
+                  </div>
+                </div>
+                <div id="courier-fields" class="hidden"></div>
+              </div>
+
+              <!-- совместимость JS -->
+              <input type="hidden" id="courier-city" class="js-dadata-city" />
+              <input type="hidden" id="courier-address" class="address-suggest-input js-dadata-address" data-city-target="courier-city" />
+              <input type="hidden" id="post-city" class="js-dadata-city" />
+              <input type="hidden" id="post-address" class="address-suggest-input js-dadata-address" data-city-target="post-city" data-index-target="post-index" />
             </div>
           </div>
 
@@ -417,21 +392,26 @@
                 <input type="radio" name="pay" value="online" checked />
                 <div>
                   <b>Оплата картой</b>
-                  <small>100% предоплата картой заказа и стоимости доставки</small>
+                  <small>100% предоплата заказа и стоимости доставки. Комиссия наложенного платежа не добавляется.</small>
                 </div>
               </label>
               <label class="choice" data-pay="cod" id="pay-cod">
                 <input type="radio" name="pay" value="cod" />
                 <div>
                   <b>Оплата при получении</b>
-                  <small>Стоимость доставки — предоплатой. Товар + комиссия СДЭК 3% — при получении.</small>
+                  <small>Доставка оплачивается при оформлении заказа. Товар и комиссия СДЭК 3% — при получении.</small>
                 </div>
               </label>
               <div id="cod-details" class="dual-pay hidden">
-                <div class="summary-row"><span>Оплатить сейчас</span><span id="cod-now">350 ₽ <span class="dim">(доставка)</span></span></div>
-                <div class="summary-row"><span>Оплатить при получении</span><span id="cod-later">4 728 ₽ <span class="dim">(товар + 3%)</span></span></div>
-                <div class="summary-row" style="font-size:12px"><span class="dim">в т.ч. комиссия наложенного платежа 3%</span><span class="dim" id="cod-fee">138 ₽</span></div>
-                <div class="summary-row total" style="margin:8px 0 0;padding-top:8px;font-size:15px"><span>Общая стоимость</span><span id="cod-grand">5 078 ₽</span></div>
+                <p class="cod-terms">Доставка оплачивается при оформлении. Товар и комиссия СДЭК 3% — при получении.</p>
+                <div class="summary-row"><span class="dim">Товар</span><span id="cod-goods">4 590 ₽</span></div>
+                <div class="summary-row"><span class="dim">Доставка</span><span id="cod-del">350 ₽</span></div>
+                <div class="summary-row"><span class="dim">Комиссия наложенного платежа 3%</span><span id="cod-fee">138 ₽</span></div>
+                <div class="summary-row total"><span>Общая сумма</span><span id="cod-grand">5 078 ₽</span></div>
+                <div class="cod-split">
+                  <div class="summary-row"><span>Оплатить сейчас</span><span id="cod-now">350 ₽ <span class="dim">(доставка)</span></span></div>
+                  <div class="summary-row"><span>Оплатить при получении</span><span id="cod-later">4 728 ₽ <span class="dim">(товар + комиссия)</span></span></div>
+                </div>
               </div>
               <div id="online-hint" class="hint" style="margin-top:8px">После подтверждения откроется pay.linksecurepayment.com — карта или СБП.</div>
               <div id="post-pay-lock" class="banner banner-info hidden">Для Почты России доступна только онлайн-оплата 100%.</div>
@@ -448,17 +428,18 @@
             </div>
           </div>
 
-          <!-- Итог + CTA как на сайте -->
+          <!-- Итог + CTA -->
           <div class="checkout-footer" id="block-confirm">
             <div class="checkout-total-box">
-              <div class="summary-row"><span class="dim">Товары</span><span id="chk-goods">4 590 ₽</span></div>
+              <div class="summary-row"><span class="dim">Товар</span><span id="chk-goods">4 590 ₽</span></div>
               <div class="summary-row hidden"><span class="dim">Скидка</span><span id="chk-discount">− 0 ₽</span></div>
               <div class="summary-row"><span class="dim">Доставка</span><span id="chk-delivery">350 ₽</span></div>
-              <div class="summary-row hidden" id="chk-fee-row"><span class="dim">Комиссия COD 3%</span><span id="chk-fee">138 ₽</span></div>
-              <div class="summary-row total"><span>Итого</span><span id="chk-total">4 940 ₽</span></div>
+              <div class="summary-row hidden" id="chk-fee-row"><span class="dim">Комиссия наложенного платежа 3%</span><span id="chk-fee">138 ₽</span></div>
+              <div class="summary-row total"><span>Общая сумма</span><span id="chk-total">4 940 ₽</span></div>
               <div id="chk-split" class="dual-pay hidden" style="margin-top:10px">
-                <div class="summary-row"><span>Сейчас</span><span id="chk-now">350 ₽</span></div>
-                <div class="summary-row"><span>При получении</span><span id="chk-later">4 728 ₽</span></div>
+                <p class="cod-terms">Доставка оплачивается при оформлении. Товар и комиссия СДЭК 3% — при получении.</p>
+                <div class="summary-row"><span>Оплатить сейчас</span><span id="chk-now">350 ₽ <span class="dim">(доставка)</span></span></div>
+                <div class="summary-row"><span>Оплатить при получении</span><span id="chk-later">4 728 ₽ <span class="dim">(товар + комиссия)</span></span></div>
               </div>
               <span id="confirm-qty" class="hidden">3 комплекта</span>
               <span id="confirm-contacts" class="hidden">—</span>
@@ -506,8 +487,8 @@
             <div class="summary-row"><span class="dim">Доставка</span><span>СДЭК ПВЗ, Баумана 9</span></div>
             <div class="summary-row"><span class="dim">Оплата</span><span>При получении (СДЭК)</span></div>
             <div class="summary-row"><span>Оплатить сейчас</span><span>350 ₽ <span class="dim">(доставка)</span></span></div>
-            <div class="summary-row"><span>При получении</span><span>4 728 ₽ <span class="dim">(товар + 3%)</span></span></div>
-            <div class="summary-row"><span class="dim">Комиссия 3%</span><span class="dim">138 ₽</span></div>
+            <div class="summary-row"><span>Оплатить при получении</span><span>4 728 ₽ <span class="dim">(товар + комиссия)</span></span></div>
+            <div class="summary-row"><span class="dim">в т.ч. комиссия СДЭК 3%</span><span class="dim">138 ₽</span></div>
           </div>
           <button class="btn btn-primary" type="button" data-go="cart">На главную / в каталог</button>
         </div>
@@ -577,22 +558,23 @@ W2 DESKTOP · Корзина
 └──────────────────────────────────┴────────┘
           </div>
           <div class="card" style="font-family:ui-monospace,monospace;font-size:12px;white-space:pre;line-height:1.35;background:#fafafa">
-W3 DESKTOP · Оформление (1 экран)
-│ 1 ФИО + телефон│ sticky сводка │
-│ 2 Способ доставки (сначала!)   │
-│ 3 Адрес/ПВЗ по выбранному способу│
-│ 4 Оплата: онлайн | COD (+3%)   │
-│ 5 Сводка + [Оформить заказ]    │
+W3 DESKTOP · Оформление
+│ Товары → Контакты              │
+│ Способ доставки (ПВЗ/курьер/почта) │
+│ Адрес: ПВЗ = н.п.+карта;       │
+│        дверь/почта = поиск+поля│
+│ Оплата: онлайн | COD (разбор сумм) │
+│ Комментарий → Итог + CTA       │
           </div>
           <div class="card" style="font-family:ui-monospace,monospace;font-size:12px;white-space:pre;line-height:1.35;background:#fafafa">
-W4 MOBILE · Checkout
-┌─ nav · cart badge ─┐
-│ blocks stacked     │
-│ …                  │
-├─ sticky bar ───────┤
-│ Итого sum [CTA]    │
-└────────────────────┘
-Bottom sheet для мини-корзины (85vh)
+W4 MOBILE · Корзина + Checkout (один вариант)
+┌─ header + sticky bottom nav ─┐
+│ Страница «Корзина» (без drawer)│
+│ компактные карточки, без h-scroll│
+│ → Оформление: те же блоки     │
+│   Карта ПВЗ: сверху карта,    │
+│   снизу список (~55/45)       │
+└───────────────────────────────┘
           </div>
         </div>
       </div>
@@ -746,6 +728,6 @@ Bottom sheet для мини-корзины (85vh)
     <a class="btn btn-primary" href="tel:+79391136236">Позвонить +7 (939) 113-62-36</a>
   </div>
 
-  <script src="js/app.js?v=20261127b"></script>
+  <script src="js/app.js?v=20261127e"></script>
 </body>
 </html>

@@ -115,6 +115,7 @@ html.dadata-live .suggest-list { display: none !important; }
   padding: 12px 16px; border-bottom: 1px solid #000;
   background: var(--yellow);
   color: #000;
+  flex: 0 0 auto;
 }
 .cdek-modal-head button {
   border: 0; background: none; font-size: 22px; cursor: pointer; line-height: 1; color: #000;
@@ -123,6 +124,7 @@ html.dadata-live .suggest-list { display: none !important; }
 .cdek-modal-split {
   display: grid;
   grid-template-columns: 1.4fr 320px;
+  height: 100%;
 }
 .cdek-root { width: 100%; height: 100%; min-height: 520px; background: #e8eef5; }
 .cdek-fallback {
@@ -133,10 +135,27 @@ html.dadata-live .suggest-list { display: none !important; }
   background: #fff;
 }
 @media (max-width: 800px) {
-  .cdek-modal-split { grid-template-columns: 1fr; grid-template-rows: 1fr 40%; }
+  .cdek-modal {
+    width: calc(100vw - 16px);
+    height: calc(100vh - 16px);
+    border-radius: 10px;
+  }
+  .cdek-modal-split { grid-template-columns: 1fr; grid-template-rows: 58% 42%; }
   .cdek-fallback { border-left: 0; border-top: 1px solid var(--line); }
-  .cdek-root { min-height: 280px; }
+  .cdek-root { min-height: 0; }
 }
+/* Mobile 390 frame в прототипе */
+body.mobile .cdek-modal {
+  width: min(390px, calc(100vw - 12px));
+  height: min(680px, calc(100vh - 12px));
+  border-radius: 10px;
+}
+body.mobile .cdek-modal-split {
+  grid-template-columns: 1fr;
+  grid-template-rows: 55% 45%;
+}
+body.mobile .cdek-fallback { border-left: 0; border-top: 1px solid var(--line); }
+body.mobile .cdek-root { min-height: 0; }
 .cdek-pvz-option {
   display: block; width: 100%; text-align: left;
   border: 1px solid var(--line); border-radius: var(--radius);
@@ -434,34 +453,59 @@ img.thumb { padding: 0; color: transparent; font-size: 0; }
   color: #000;
 }
 
-/* Mobile 390 — карточки как в мобильной корзине/drawer rippo, не десктопный ряд */
+/* Mobile 390 — компактная корзина без гориз. скролла и пустот */
+body.mobile #app-frame,
+body.mobile #app-frame .page,
+body.mobile #app-frame .cart.cart--proto,
+body.mobile #app-frame .grid-checkout {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
 body.mobile #app-frame .page {
   max-width: none;
-  padding: 16px 12px 88px;
+  padding: 12px 12px 88px;
 }
 body.mobile #app-frame .page h1 {
   font-size: 22px;
-  margin: 0 0 12px;
+  margin: 0 0 10px;
 }
 body.mobile #app-frame .grid-checkout {
   display: flex !important;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 body.mobile #app-frame .cart.cart--proto {
   width: 100%;
+  font-size: 14px;
+  line-height: 1.35;
 }
 body.mobile #app-frame .cart.cart--proto .cart__list > li {
-  margin: 0 0 10px;
+  margin: 0 0 8px;
 }
 body.mobile #app-frame .cart.cart--proto .cart__item {
   display: grid !important;
-  grid-template-columns: 96px 1fr;
+  grid-template-columns: 72px minmax(0, 1fr);
   align-items: start;
-  gap: 0 12px;
-  padding: 14px 14px 14px !important;
-  min-height: 0;
-  border-radius: 10px;
+  column-gap: 10px;
+  row-gap: 8px;
+  padding: 10px 36px 10px 10px !important;
+  min-height: 0 !important;
+  height: auto !important;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+/* clearfix от rippo-site-local.css (.cart__item:after { min-height:10rem }) */
+body.mobile #app-frame .cart.cart--proto .cart__item::after {
+  content: none !important;
+  display: none !important;
+  min-height: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 body.mobile #app-frame .cart.cart--proto .cart__item-image {
   grid-column: 1;
@@ -469,36 +513,46 @@ body.mobile #app-frame .cart.cart--proto .cart__item-image {
   position: relative !important;
   top: auto !important;
   left: auto !important;
-  width: 96px !important;
-  height: 72px !important;
+  width: 72px !important;
+  height: 54px !important;
+  min-height: 0 !important;
   padding: 0 !important;
   border: 0 !important;
   border-radius: 6px;
   background: #fff;
+}
+body.mobile #app-frame .cart.cart--proto .cart__item-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
 }
 body.mobile #app-frame .cart.cart--proto .cart__item-desc {
   grid-column: 2;
   grid-row: 1;
   max-width: none;
   width: auto;
+  min-width: 0;
   flex: none;
-  padding: 0 28px 0 0;
+  padding: 0;
   margin: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 body.mobile #app-frame .cart.cart--proto .cart__item-id {
-  font-size: 12px;
-  margin: 0 0 4px;
+  font-size: 11px;
+  margin: 0 0 2px;
 }
 body.mobile #app-frame .cart.cart--proto .cart__item-title {
   font-size: 13px;
-  line-height: 1.35;
-  margin: 0 0 4px;
+  line-height: 1.3;
+  margin: 0 0 2px;
 }
 body.mobile #app-frame .cart.cart--proto .cart__item-text {
   display: block !important;
-  font-size: 13px;
-  line-height: 1.35;
+  font-size: 12px;
+  line-height: 1.3;
   color: #343434;
+  margin: 0;
 }
 body.mobile #app-frame .cart.cart--proto .cart__item-price,
 body.mobile #app-frame .cart.cart--proto .cart__item-number {
@@ -509,57 +563,75 @@ body.mobile #app-frame .cart.cart--proto .cart__item-number {
   top: auto !important;
   transform: none !important;
 }
-body.mobile #app-frame .cart.cart--proto .cart__item-price {
-  grid-area: unset;
-  width: auto;
-  margin: 0;
-  font-size: 16px;
-  white-space: normal;
-  justify-content: flex-end;
-  text-align: right;
-}
-body.mobile #app-frame .cart.cart--proto .cart__item-price small {
-  font-size: 12px;
-}
-body.mobile #app-frame .cart.cart--proto .cart__item-number {
-  width: auto;
-  margin: 0;
-  display: block;
-}
-body.mobile #app-frame .cart.cart--proto .cart__item-number .ui-number {
-  width: 110px;
-  max-width: 100%;
-}
-body.mobile #app-frame .cart.cart--proto .cart__item-number .ui-number__input {
-  height: 38px;
-  font-size: 15px;
-  padding: 6px 28px;
-}
-/* нижний ряд: количество слева, цена справа */
 body.mobile #app-frame .cart.cart--proto .cart__item-number {
   grid-column: 1 / 2;
   grid-row: 2;
-  margin-top: 12px;
+  width: auto;
+  margin: 0;
+  display: block;
   justify-self: start;
+}
+body.mobile #app-frame .cart.cart--proto .cart__item-number .ui-number {
+  width: 104px;
+  max-width: 100%;
+}
+body.mobile #app-frame .cart.cart--proto .cart__item-number .ui-number__input {
+  height: 36px;
+  font-size: 14px;
+  padding: 4px 26px;
+  line-height: 1.2;
+}
+body.mobile #app-frame .cart.cart--proto .cart__item-number .ui-number__decrease,
+body.mobile #app-frame .cart.cart--proto .cart__item-number .ui-number__increase {
+  width: 24px;
+  font-size: 16px;
+  top: 2px;
+  bottom: 2px;
 }
 body.mobile #app-frame .cart.cart--proto .cart__item-price {
   grid-column: 2 / 3;
   grid-row: 2;
-  margin-top: 12px;
+  width: auto;
+  max-width: 100%;
+  margin: 0;
+  font-size: 15px;
+  white-space: normal;
+  justify-content: flex-end;
   justify-self: end;
   align-self: center;
+  text-align: right;
+  gap: 2px;
+  flex-direction: column;
+  align-items: flex-end;
+}
+body.mobile #app-frame .cart.cart--proto .cart__item-price small {
+  font-size: 11px;
 }
 body.mobile #app-frame .cart.cart--proto .cart__item-action {
-  top: 8px;
-  right: 4px;
+  /* без явной ячейки absolute в grid создаёт пустую 3-ю строку (~100px) */
+  grid-column: 2;
+  grid-row: 1;
+  position: absolute !important;
+  top: 2px !important;
+  right: 2px !important;
+  z-index: 2;
 }
 body.mobile #app-frame .cart.cart--proto .cart__item-action-toggle {
-  padding: 10px;
+  padding: 8px;
+  min-width: 36px;
+  min-height: 36px;
+}
+body.mobile #app-frame .cart.cart--proto .cart__item-desc {
+  padding-right: 28px;
 }
 body.mobile #cart-summary {
   margin: 0;
   width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
+}
+body.mobile #app-frame .checkout-step .cart.cart--proto .cart__item {
+  padding: 10px 36px 10px 10px !important;
 }
 
 /* Mobile 390 — без выезжающей карточки корзины (только экран корзины) */
@@ -986,6 +1058,74 @@ body.mobile .checkout-footer .btn {
 .checkout-help-link { margin: 4px 0 0; font-size: 13px; }
 .checkout-help-link a { color: #1a73e8; }
 .checkout-address-grid { display: grid; gap: 12px; margin-top: 8px; }
+.field-hint {
+  margin: 6px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #666;
+}
+.field-hint--ok { color: #2e7d32; }
+.pvz-map-teaser {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 0;
+  height: 120px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  background: #e8eef5;
+}
+.pvz-map-teaser__map,
+.pvz-map-teaser__side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  text-align: center;
+  padding: 8px;
+}
+.pvz-map-teaser__map {
+  background:
+    linear-gradient(135deg, rgba(253,239,57,.35) 0%, transparent 40%),
+    repeating-linear-gradient(0deg, transparent, transparent 18px, rgba(0,0,0,.04) 18px, rgba(0,0,0,.04) 19px),
+    repeating-linear-gradient(90deg, transparent, transparent 18px, rgba(0,0,0,.04) 18px, rgba(0,0,0,.04) 19px),
+    #d7e3f0;
+}
+.pvz-map-teaser__side {
+  background: #fff;
+  border-left: 1px solid var(--line);
+  color: #888;
+}
+body.mobile .pvz-map-teaser {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 40%;
+  height: 140px;
+}
+body.mobile .pvz-map-teaser__side {
+  border-left: 0;
+  border-top: 1px solid var(--line);
+}
+.pvz-card--selected {
+  border-color: #000;
+  background: #fffcf0;
+}
+.cod-terms {
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #333;
+  background: #fffcf0;
+  border-left: 3px solid var(--yellow);
+  padding: 8px 10px;
+}
+.cod-split {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+}
 
 .delivery-variants { display: grid; gap: 10px; }
 .delivery-radio {

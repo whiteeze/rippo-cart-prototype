@@ -110,7 +110,7 @@
     // Пустая корзина
     $('#cart-empty')?.toggleAttribute('hidden', !empty);
     $$('.cart__list').forEach((list) => list.classList.toggle('is-empty', empty));
-    const checkoutBtns = $$('#cart-summary [data-go="checkout"], #screen-cart [data-go="checkout"], #screen-cart-mobile [data-go="checkout"], #drawer-checkout');
+    const checkoutBtns = $$('#cart-summary [data-go="checkout"], #screen-cart [data-go="checkout"], #drawer-checkout');
     checkoutBtns.forEach((btn) => {
       btn.disabled = empty;
       btn.classList.toggle('is-disabled', empty);
@@ -128,15 +128,21 @@
     const split = $('#chk-split');
     if (feeRow) feeRow.classList.toggle('hidden', state.pay !== 'cod');
     if (split) split.classList.toggle('hidden', state.pay !== 'cod');
-    if ($('#chk-now')) $('#chk-now').textContent = money(payNow());
-    if ($('#chk-later')) $('#chk-later').textContent = money(payLater());
+    if ($('#chk-now')) {
+      $('#chk-now').innerHTML = `${money(payNow())} <span class="dim">(доставка)</span>`;
+    }
+    if ($('#chk-later')) {
+      $('#chk-later').innerHTML = `${money(payLater())} <span class="dim">(товар + комиссия)</span>`;
+    }
 
     // COD dual block
+    if ($('#cod-goods')) $('#cod-goods').textContent = money(g);
+    if ($('#cod-del')) $('#cod-del').textContent = money(del);
     if ($('#cod-now')) {
       $('#cod-now').innerHTML = `${money(deliveryCost())} <span class="dim">(доставка)</span>`;
     }
     if ($('#cod-later')) {
-      $('#cod-later').innerHTML = `${money(payLater())} <span class="dim">(товар + 3%)</span>`;
+      $('#cod-later').innerHTML = `${money(payLater())} <span class="dim">(товар + комиссия)</span>`;
     }
     if ($('#cod-fee')) $('#cod-fee').textContent = money(fee);
     if ($('#cod-grand')) $('#cod-grand').textContent = money(grand());
@@ -147,9 +153,21 @@
     const isCourier = state.delivery === 'courier';
     const isPost = state.delivery === 'post';
 
+    $('#addr-pvz')?.classList.toggle('hidden', !isPvz);
+    $('#addr-door')?.classList.toggle('hidden', isPvz);
     $('#pvz-fields')?.classList.toggle('hidden', !isPvz);
     $('#courier-fields')?.classList.toggle('hidden', !isCourier);
     $('#post-fields')?.classList.toggle('hidden', !isPost);
+    $('#f-index')?.classList.toggle('hidden', !isPost);
+
+    const title = $('#address-step-title');
+    if (title) {
+      title.textContent = isPvz
+        ? 'Населённый пункт и пункт выдачи'
+        : isPost
+          ? 'Адрес для Почты России'
+          : 'Адрес доставки до двери';
+    }
 
     if (isPvz) {
       $('#pvz-block')?.classList.toggle('hidden', state.pvzSelected);
@@ -172,8 +190,10 @@
       setPay('online');
     }
 
-    $('#confirm-delivery').textContent =
-      isPvz ? 'СДЭК ПВЗ' : isCourier ? 'СДЭК курьер' : 'Почта России';
+    if ($('#confirm-delivery')) {
+      $('#confirm-delivery').textContent =
+        isPvz ? 'СДЭК ПВЗ' : isCourier ? 'СДЭК курьер' : 'Почта России';
+    }
 
     renderSums();
   }
@@ -419,11 +439,27 @@
       { id: 'f-firstname', check: (v) => v.trim().length >= 2 },
       { id: 'f-lastname', check: (v) => v.trim().length >= 2 },
     ];
-    if (state.delivery === 'pvz' && !state.pvzSelected) {
-      ok = false;
-      $('#pvz-block')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      alert('Выберите пункт выдачи СДЭК');
-      return;
+    if (state.delivery === 'pvz') {
+      const city = ($('#city-input')?.value || '').trim();
+      if (!city) {
+        alert('Укажите населённый пункт');
+        $('#city-input')?.focus();
+        return;
+      }
+      if (!state.pvzSelected) {
+        $('#pvz-block')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        alert('Выберите пункт выдачи СДЭК на карте');
+        return;
+      }
+    }
+    if (state.delivery !== 'pvz') {
+      const addr = ($('#checkout-address-main')?.value || '').trim();
+      const street = ($('#door-street')?.value || '').trim();
+      if (!addr && !street) {
+        alert('Укажите адрес доставки');
+        $('#checkout-address-main')?.focus();
+        return;
+      }
     }
     checks.forEach(({ id, check }) => {
       const wrap = document.getElementById(id);
@@ -561,6 +597,31 @@
     return { tips, items: items.length ? items : ADDRESS_DB.filter((a) => !hasCityMark || v.includes(a.city.toLowerCase().slice(0, 3))).slice(0, 4) };
   }
 
+  function fillDoorAddressFields(data) {
+    const map = {
+      'door-city': data.city,
+      'door-street': data.street,
+      'door-house': data.house,
+      'door-apart': data.flat,
+      'post-index': data.index,
+      'courier-city': data.city,
+      'post-city': data.city,
+    };
+    Object.entries(map).forEach(([id, val]) => {
+      const el = document.getElementById(id);
+      if (el && val != null) el.value = val;
+    });
+    if (data.city) {
+      const region = $('#door-region');
+      if (region && !region.value) region.value = data.city === 'Москва' ? 'г. Москва' : data.city === 'Казань' ? 'Респ. Татарстан' : '';
+    }
+    const hint = $('#address-autofill-hint');
+    if (hint) {
+      hint.textContent = `Адрес подставлен: ${data.city}, ${data.street}, д. ${data.house}${data.flat ? ', кв. ' + data.flat : ''}. При необходимости поправьте поля ниже.`;
+      hint.classList.add('field-hint--ok');
+    }
+  }
+
   function bindAddressSuggest(inputId, listId, errorId, onPick) {
     const input = document.getElementById(inputId);
     const list = document.getElementById(listId);
@@ -590,9 +651,11 @@
         return;
       }
       list.innerHTML = items.map((a) => `
-        <button type="button" role="option" data-full="${a.full}" data-city="${a.city}" data-index="${a.index}">
+        <button type="button" role="option"
+          data-full="${a.full}" data-city="${a.city}" data-index="${a.index}"
+          data-street="${a.street}" data-house="${a.house}" data-flat="${a.flat || ''}">
           <span class="suggest-main">${a.full}</span>
-          <span class="suggest-sub">индекс ${a.index}</span>
+          <span class="suggest-sub">индекс ${a.index} · поля заполнятся автоматически</span>
         </button>
       `).join('');
       list.classList.toggle('hidden', !items.length);
@@ -679,9 +742,10 @@
     if (live) return;
 
     bindCitySuggest('city-input', 'city-pvz-suggest');
-    bindCitySuggest('courier-city', 'courier-city-suggest');
-    bindCitySuggest('post-city', 'post-city-suggest');
 
+    bindAddressSuggest('checkout-address-main', 'checkout-address-suggest', 'checkout-address-error', (data) => {
+      fillDoorAddressFields(data);
+    });
     bindAddressSuggest('courier-address', 'courier-suggest', 'courier-address-error', (data) => {
       const city = $('#courier-city');
       if (city && data.city) city.value = data.city;
